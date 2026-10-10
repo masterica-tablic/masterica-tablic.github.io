@@ -11,6 +11,7 @@
   --good:#57C5AF; --good-soft:#E4F5F1;
   --info:#2F5EED; --info-soft:#E7ECFD;
   --wps-soft:#FCE7E2; --excel-soft:#E0F2E8; --gas-soft:#E7ECFD;
+  --wps-ink:#B32D1A; --excel-ink:#14683E; --gas-ink:#1E3FA8;
   --code-bg:#1C1C1C; --code-ink:#E8E6E1; --code-dim:#7E7A73;
   --shadow:0 1px 2px rgba(28,28,28,.04), 0 8px 24px rgba(28,28,28,.05);
   --font:"Outfit","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -24,6 +25,7 @@
     --good:#6FD3BF; --good-soft:#1E332F;
     --info:#7C9BFF; --info-soft:#232840;
     --wps-soft:#3B211B; --excel-soft:#16311F; --gas-soft:#232840;
+    --wps-ink:#C7452F; --excel-ink:#1C7D4A; --gas-ink:#3458C8;
     --code-bg:#121115; --code-ink:#E8E6E1; --code-dim:#6E6A63;
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
   }
@@ -35,6 +37,7 @@
   --good:#6FD3BF; --good-soft:#1E332F;
   --info:#7C9BFF; --info-soft:#232840;
   --wps-soft:#3B211B; --excel-soft:#16311F; --gas-soft:#232840;
+  --wps-ink:#C7452F; --excel-ink:#1C7D4A; --gas-ink:#3458C8;
   --code-bg:#121115; --code-ink:#E8E6E1; --code-dim:#6E6A63;
   --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
 }
@@ -91,6 +94,11 @@ main{padding-block:48px 72px;}
 .btn-primary:hover{background:#E85E18;}
 .btn-ghost{background:var(--surface); color:var(--ink); border-color:var(--hair);}
 .btn-sm{padding:9px 16px; font-size:14px;}
+.btn-plat{color:#fff; border-color:transparent;}
+.btn-plat:hover{filter:brightness(1.1);}
+.plat-js{background:var(--wps-ink);}
+.plat-vba{background:var(--excel-ink);}
+.plat-gas{background:var(--gas-ink);}
 .btn-danger{background:transparent; color:#B4431A; border-color:#E8C0AC;}
 .btn[aria-disabled="true"]{opacity:.45; pointer-events:none;}
 .row{display:flex; flex-wrap:wrap; gap:12px; align-items:center;}
@@ -1216,8 +1224,10 @@ function собратьЛистыВСвод() {
       copy.textContent = "Скопировать";
       showCode(!pre.hidden);
       fileSlot.textContent = "";
-      fileSlot.appendChild(linkBtn(fileKey(m, key),
-        "Готовый файл с кнопкой: " + L.name));
+      var fk = fileKey(m, key);
+      var ready = (DATA.links[fk] || "").trim() !== "";
+      fileSlot.appendChild(linkBtn(fk, "Готовый файл с кнопкой: " + L.name,
+        ready ? "btn btn-sm btn-plat plat-" + key : null));
     }
     if (langs.length) { pick(langs[0].key); }
 
