@@ -1,0 +1,609 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Учёт учеников и оплат</title><link rel="icon" href="favicon.svg" type="image/svg+xml"></head><body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F1F0EE;
+  --surface:#FFFFFF;
+  --surface-2:#E9E7E4;
+  --ink:#1C1C1C;
+  --muted:#6F6C68;
+  --hair:#DEDBD7;
+  --accent:#FF7028;
+  --accent-soft:#FFEDE3;
+  --good:#57C5AF;
+  --good-soft:#E4F5F1;
+  --info:#2F5EED;
+  --cream:#FFF9C7;
+  --shadow:0 1px 2px rgba(28,28,28,.04), 0 8px 24px rgba(28,28,28,.05);
+  --radius:20px;
+  --font:"Outfit","Segoe UI",system-ui,-apple-system,sans-serif;
+  --sheet-font:ui-sans-serif,"Segoe UI",Roboto,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17161A; --surface:#201F24; --surface-2:#2A282F;
+    --ink:#F1EFEB; --muted:#A5A19B; --hair:#343139;
+    --accent:#FF8244; --accent-soft:#3A2419;
+    --good:#6FD3BF; --good-soft:#1E332F;
+    --info:#7C9BFF; --cream:#3A3520;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17161A; --surface:#201F24; --surface-2:#2A282F;
+  --ink:#F1EFEB; --muted:#A5A19B; --hair:#343139;
+  --accent:#FF8244; --accent-soft:#3A2419;
+  --good:#6FD3BF; --good-soft:#1E332F;
+  --info:#7C9BFF; --cream:#3A3520;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
+}
+
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font); font-size:17px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding-inline:20px; padding-block:0;}
+section{padding-block:72px;}
+section + section{border-top:1px solid var(--hair);}
+
+h1,h2,h3{text-wrap:balance; margin:0; font-weight:500; letter-spacing:-.02em;}
+h1{font-size:clamp(32px,5.4vw,54px); line-height:1.08; font-weight:400;}
+h2{font-size:clamp(25px,3.4vw,34px); line-height:1.18;}
+h3{font-size:19px; line-height:1.3;}
+p{margin:0;}
+.lede{font-size:clamp(17px,2vw,20px); color:var(--muted); max-width:58ch;}
+.eyebrow{
+  font-size:12px; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:18px;
+}
+.muted{color:var(--muted);}
+.stack{display:flex; flex-direction:column; gap:20px;}
+.stack-s{display:flex; flex-direction:column; gap:12px;}
+
+/* ---------- кнопки ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:15px 30px; border-radius:999px; font-size:17px; font-weight:500;
+  text-decoration:none; border:1px solid transparent; cursor:pointer;
+  transition:transform .15s ease, background-color .15s ease;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-primary:hover{background:#E85E18;}
+.btn-ghost{background:transparent; color:var(--ink); border-color:var(--hair);}
+.btn-ghost:hover{background:var(--surface);}
+.btn:focus-visible{outline:3px solid var(--info); outline-offset:3px;}
+.handle{font-size:14px; color:var(--muted);}
+.handle b{font-weight:500; color:var(--ink);}
+
+/* ---------- герой ---------- */
+.hero{padding-block:clamp(48px,7vw,86px) 60px;}
+.hero h1 em{font-style:normal; color:var(--accent);}
+.hero-cta{display:flex; flex-wrap:wrap; align-items:center; gap:16px 22px; margin-top:6px;}
+
+.stats{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  background:var(--hair); border:1px solid var(--hair);
+  border-radius:var(--radius); overflow:hidden; margin-top:52px;
+}
+.stat{background:var(--surface); padding:26px 24px 24px;}
+.stat-n{
+  font-size:clamp(38px,5.6vw,58px); font-weight:300; line-height:1;
+  letter-spacing:-.035em; font-variant-numeric:tabular-nums;
+  display:flex; align-items:baseline; gap:8px;
+}
+.stat-n span{font-size:16px; font-weight:400; letter-spacing:0; color:var(--muted);}
+.stat-l{margin-top:14px; font-size:14.5px; color:var(--muted); line-height:1.4;}
+.stat.is-accent .stat-n{color:var(--accent);}
+
+/* ---------- боли ---------- */
+.pains{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:34px;}
+.pain{
+  background:var(--surface); border-radius:16px; padding:22px 24px;
+  font-size:17.5px; line-height:1.45; box-shadow:var(--shadow);
+}
+.pain::before{
+  content:""; display:block; width:26px; height:2px; background:var(--accent);
+  margin-bottom:14px; border-radius:2px;
+}
+
+/* ---------- панели-продукт ---------- */
+.sheet{
+  font-family:var(--sheet-font); background:#FFFDF0; color:#2E266D;
+  border:1px solid #C9C6DE; border-radius:14px; overflow:hidden;
+  box-shadow:var(--shadow); font-size:14px;
+}
+.sheet-bar{
+  background:#FFF9C7; padding:11px 16px; font-size:12px; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase; color:#2E266D;
+  border-bottom:1px solid #C9C6DE;
+}
+.sheet-scroll{overflow-x:auto;}
+table.grid{border-collapse:collapse; width:100%; min-width:460px;}
+table.grid th{
+  background:#C0F0F7; font-weight:600; font-size:12px; text-align:left;
+  padding:9px 14px; border-bottom:1px solid #C9C6DE; white-space:nowrap;
+}
+table.grid td{
+  padding:10px 14px; border-bottom:1px solid #EAE8F2;
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+table.grid tr:last-child td{border-bottom:none;}
+td.num{text-align:right;}
+.chip{
+  display:inline-block; padding:3px 9px; border-radius:6px;
+  font-size:12.5px; font-weight:600; white-space:nowrap;
+}
+.chip-debt{background:#FFE9DB; color:#8A3A10;}
+.chip-ok{background:#DCEF7B; color:#3A4208;}
+.warn{
+  display:flex; gap:11px; padding:11px 16px; align-items:flex-start;
+  background:#FFE9DB; border-bottom:1px solid #F0D9C8; font-size:13.5px;
+  color:#5C2A0C; line-height:1.4;
+}
+.warn:last-child{border-bottom:none;}
+.warn b{font-weight:600; white-space:nowrap;}
+.msg{padding:14px 16px; border-bottom:1px solid #EAE8F2;}
+.msg:last-child{border-bottom:none;}
+.msg-top{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:7px;}
+.msg-kind{
+  font-size:11.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  padding:3px 8px; border-radius:5px; background:#C0F0F7; color:#123F49;
+}
+.msg-kind.k-debt{background:#FFE9DB; color:#8A3A10;}
+.msg-who{font-weight:600;}
+.msg-meta{font-size:13px; color:#6B66A0;}
+.msg-text{
+  background:#fff; border:1px solid #EAE8F2; border-radius:9px;
+  padding:11px 13px; font-size:13.5px; line-height:1.5; color:#3A3470;
+}
+
+.split{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center;}
+.split-wide{grid-template-columns:1.05fr 1fr;}
+
+/* ---------- листы ---------- */
+.sheets{display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--hair); border:1px solid var(--hair);
+  border-radius:var(--radius); overflow:hidden; margin-top:38px;}
+.sheet-card{background:var(--surface); padding:22px 20px 24px;}
+.sheet-card h3{margin-bottom:8px;}
+.sheet-card p{font-size:14.5px; color:var(--muted); line-height:1.45;}
+.sheet-i{
+  width:34px; height:34px; border-radius:10px; background:var(--accent-soft);
+  display:flex; align-items:center; justify-content:center; margin-bottom:15px;
+}
+.sheet-i svg{width:19px; height:19px; stroke:var(--accent); fill:none;
+  stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+
+/* ---------- сравнение ---------- */
+.cmp{width:100%; border-collapse:collapse; margin-top:34px; font-size:16px;}
+.cmp th, .cmp td{padding:15px 16px; text-align:left; border-bottom:1px solid var(--hair);}
+.cmp thead th{
+  font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--muted); border-bottom:1px solid var(--ink);
+}
+.cmp td:first-child{color:var(--muted);}
+.cmp .col-us{background:var(--surface); font-weight:500;}
+.cmp thead .col-us{color:var(--accent);}
+
+/* ---------- цена ---------- */
+.price-card{
+  background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:38px 36px; display:grid; grid-template-columns:1fr auto;
+  gap:34px; align-items:center; margin-top:34px;
+}
+.price-n{
+  font-size:clamp(46px,7vw,72px); font-weight:300; line-height:1;
+  letter-spacing:-.04em; font-variant-numeric:tabular-nums;
+}
+.price-n span{font-size:20px; color:var(--muted); font-weight:400; letter-spacing:0;}
+.price-list{list-style:none; margin:20px 0 0; padding:0;
+  display:flex; flex-direction:column; gap:9px;}
+.price-list li{display:flex; gap:11px; align-items:flex-start; font-size:16px;}
+.tick{
+  flex:0 0 19px; height:19px; margin-top:3px; border-radius:50%;
+  background:var(--good-soft); display:flex; align-items:center; justify-content:center;
+}
+.tick svg{width:11px; height:11px; stroke:var(--good); fill:none;
+  stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round;}
+.price-side{text-align:center; display:flex; flex-direction:column;
+  gap:14px; align-items:center;}
+
+/* ---------- шаги ---------- */
+.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:34px;}
+.step-n{
+  font-size:13px; font-weight:600; color:var(--accent); letter-spacing:.08em;
+  margin-bottom:10px;
+}
+.step h3{margin-bottom:7px;}
+.step p{font-size:15px; color:var(--muted);}
+
+/* ---------- faq ---------- */
+.faq{margin-top:34px; border-top:1px solid var(--hair);}
+.faq details{border-bottom:1px solid var(--hair);}
+.faq summary{
+  padding:19px 44px 19px 0; cursor:pointer; font-size:18px; font-weight:500;
+  position:relative; list-style:none;
+}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{
+  content:""; position:absolute; right:12px; top:27px;
+  width:9px; height:9px; border-right:1.8px solid var(--muted);
+  border-bottom:1.8px solid var(--muted); transform:rotate(45deg);
+  transition:transform .2s ease;
+}
+.faq details[open] summary::after{transform:rotate(-135deg); top:31px;}
+.faq summary:focus-visible{outline:2px solid var(--info); outline-offset:2px;}
+.faq .ans{padding:0 8px 22px 0; color:var(--muted); font-size:16.5px; max-width:66ch;}
+
+/* ---------- финал ---------- */
+.final{
+  background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:clamp(34px,5vw,58px); text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:20px;
+}
+.final .lede{max-width:52ch;}
+footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
+  display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:space-between;
+  border-top:1px solid var(--hair);}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; animation:none !important;}
+}
+@media (max-width:900px){
+  .sheets{grid-template-columns:repeat(2,1fr);}
+  .split, .split-wide{grid-template-columns:1fr; gap:30px;}
+  .steps{grid-template-columns:1fr; gap:22px;}
+}
+@media (max-width:620px){
+  body{font-size:16px;}
+  section{padding-block:52px;}
+  .stats{grid-template-columns:1fr;}
+  .pains{grid-template-columns:1fr;}
+  .price-card{grid-template-columns:1fr; padding:28px 24px; gap:26px;}
+  .cmp{font-size:15px;}
+  .cmp th, .cmp td{padding:13px 11px;}
+}
+</style>
+
+<div class="wrap">
+
+  <!-- ══════════════ ГЕРОЙ ══════════════ -->
+  <section class="hero">
+    <div class="stack">
+      <div>
+        <div class="eyebrow">Учёт учеников и оплат · Excel и WPS</div>
+        <h1>Таблица находит занятия,<br>за которые вы <em>забыли взять деньги</em></h1>
+      </div>
+      <p class="lede">Вы отмечаете занятия и оплаты. Всё остальное считается само:
+        кто сколько должен, сколько осталось от абонемента, кому сегодня написать.
+        Без подписки, без регистрации учеников, без макросов.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://t.me/masterica_tablic">Написать и забрать таблицу</a>
+        <span class="handle">Отвечаю в Telegram: <b>@masterica_tablic</b></span>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat is-accent">
+        <div class="stat-n">4 500 <span>₽</span></div>
+        <div class="stat-l">нашлось в демо-примере: три занятия прошли,
+          а деньги за них не начислены</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">990 <span>₽</span></div>
+        <div class="stat-l">один раз и навсегда — не в месяц,
+          не за ученика</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">0</div>
+        <div class="stat-l">регистраций: ученикам и родителям
+          не надо заводить кабинеты</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ БОЛИ ══════════════ -->
+  <section>
+    <h2>Знакомо?</h2>
+    <div class="pains">
+      <div class="pain">Помните, что кто-то не заплатил, но не помните точно кто
+        и за сколько занятий.</div>
+      <div class="pain">Занятие перенесли, потом ещё раз, и в итоге непонятно —
+        оно было или нет.</div>
+      <div class="pain">Родитель спрашивает «сколько с меня», и вы пересчитываете
+        по переписке и календарю.</div>
+      <div class="pain">Абонемент вроде закончился, но вы не уверены,
+        и лишний раз спросить неловко.</div>
+    </div>
+  </section>
+
+  <!-- ══════════════ ПРОВЕРКА ══════════════ -->
+  <section>
+    <div class="split split-wide">
+      <div class="stack">
+        <div>
+          <div class="eyebrow">Колонка «Проверка»</div>
+          <h2>Главное — она ловит потерянные деньги</h2>
+        </div>
+        <p class="lede">Занятие прошло, а статус в журнале остался
+          «Запланировано». В доход оно не попало, в долг ученику — тоже.
+          Такие строки таблица показывает сама, прямо в журнале.</p>
+        <p class="muted">Она же ловит опечатку в имени ученика, пустую дату
+          и занятие, которое стоит будущим числом, но уже помечено проведённым.</p>
+      </div>
+
+      <div class="sheet" role="img"
+           aria-label="Фрагмент листа «Занятия»: три предупреждения колонки «Проверка»">
+        <div class="sheet-bar">Занятия · колонка «Проверка»</div>
+        <div class="warn"><b>10.09</b><span>Петров Максим — занятие прошло,
+          отметьте статус. Не начислено 1 800 ₽</span></div>
+        <div class="warn"><b>11.09</b><span>Иванова Алиса — занятие прошло,
+          отметьте статус. Не начислено 1 500 ₽</span></div>
+        <div class="warn"><b>11.09</b><span>Смирнова Ева — занятие прошло,
+          отметьте статус. Не начислено 1 200 ₽</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ БАЛАНСЫ + НАПОМИНАНИЯ ══════════════ -->
+  <section>
+    <div class="split">
+      <div class="stack-s">
+        <h3>Баланс по каждому ученику — всегда актуальный</h3>
+        <div class="sheet" role="img"
+             aria-label="Фрагмент листа «Ученики» с балансами и остатком абонемента">
+          <div class="sheet-bar">Ученики</div>
+          <div class="sheet-scroll">
+            <table class="grid">
+              <thead><tr>
+                <th>Ученик</th><th>Оплата</th>
+                <th class="num">Баланс</th><th class="num">Остаток</th>
+              </tr></thead>
+              <tbody>
+                <tr><td>Иванова Алиса</td><td>Поштучно</td>
+                  <td class="num">0 ₽</td><td class="num">—</td></tr>
+                <tr><td>Петров Максим</td><td>Пакет</td>
+                  <td class="num"><span class="chip chip-ok">+1 800 ₽</span></td>
+                  <td class="num">1 занятие</td></tr>
+                <tr><td>Смирнова Ева</td><td>Поштучно</td>
+                  <td class="num"><span class="chip chip-debt">−1 200 ₽</span></td>
+                  <td class="num">—</td></tr>
+                <tr><td>Кокорев Лёша</td><td>Поштучно</td>
+                  <td class="num"><span class="chip chip-ok">+100 ₽</span></td>
+                  <td class="num">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="muted" style="font-size:15px">Персиковым — кто должен,
+          лаймовым — у кого аванс. Пересчитывается при каждом изменении.</p>
+      </div>
+
+      <div class="stack-s">
+        <h3>И готовый текст, который остаётся только отправить</h3>
+        <div class="sheet" role="img"
+             aria-label="Фрагмент листа «Напоминания» с готовыми сообщениями">
+          <div class="sheet-bar">Напоминания · на сегодня</div>
+          <div class="msg">
+            <div class="msg-top">
+              <span class="msg-kind k-debt">Долг</span>
+              <span class="msg-who">Смирнова Ева</span>
+              <span class="msg-meta">к оплате 1 200 ₽</span>
+            </div>
+            <div class="msg-text">Добрый день! Напоминаю про оплату занятий:
+              к оплате 1 200 ₽. Реквизиты прежние — будет удобно, переведите
+              до следующего занятия. Спасибо!</div>
+          </div>
+          <div class="msg">
+            <div class="msg-top">
+              <span class="msg-kind">Занятие завтра</span>
+              <span class="msg-who">Иванова Алиса</span>
+              <span class="msg-meta">13.09 в 17:00</span>
+            </div>
+            <div class="msg-text">Добрый день! Напоминаю: завтра в 17:00
+              у нас занятие. Всё в силе?</div>
+          </div>
+        </div>
+        <p class="muted" style="font-size:15px">Список собирается сам при открытии
+          файла. Скопировали — отправили.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ ЛИСТЫ ══════════════ -->
+  <section>
+    <h2>Восемь листов, которые работают вместе</h2>
+    <p class="lede" style="margin-top:14px">Заполняете три из них. Остальные
+      собираются из ваших данных сами.</p>
+
+    <div class="sheets">
+      <div class="sheet-card">
+        <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/></svg></div>
+        <h3>Ученики</h3>
+        <p>Карточка, ставка, модель оплаты и текущий баланс по каждому.</p>
+      </div>
+      <div class="sheet-card">
+        <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div>
+        <h3>Занятия</h3>
+        <p>Журнал на 300 строк: дата, время, статус. И колонка «Проверка».</p>
+      </div>
+      <div class="sheet-card">
+        <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/><path d="M3 11h18M7 15h4"/></svg></div>
+        <h3>Оплаты</h3>
+        <p>Кто, когда и сколько заплатил. Поштучно и абонементами.</p>
+      </div>
+      <div class="sheet-card">
+        <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 5h18v16H3z"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <h3>Расписание</h3>
+        <p>Сетка на неделю. Несколько учеников в один час — нормально.</p>
+      </div>
+      <div class="sheet-card">
+        <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg></div>
+        <h3>Отчёт родителю</h3>
+        <p>Выбрали ученика и период — получили готовый текст для отправки.</p>
+      </div>
+      <div class="sheet-card">
+        <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 20V9M11 20V4M16 20v-7M21 20v-4"/></svg></div>
+        <h3>Сводка</h3>
+        <p>Доход, часы, средний чек, доход в час и график по месяцам.</p>
+      </div>
+      <div class="sheet-card">
+        <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+        <h3>Напоминания</h3>
+        <p>Долги, кончающиеся абонементы, занятия на сегодня и завтра.</p>
+      </div>
+      <div class="sheet-card">
+        <div class="sheet-i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg></div>
+        <h3>Инструкция</h3>
+        <p>Внутри файла, на русском. Разобраться — пять минут.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ СРАВНЕНИЕ ══════════════ -->
+  <section>
+    <h2>Чем это отличается от платформ по подписке</h2>
+    <p class="lede" style="margin-top:14px">Платформа нужна тем, кто переносит
+      на неё всё преподавание. Если вам нужен только учёт — вы переплачиваете
+      за то, чем не пользуетесь.</p>
+
+    <div class="sheet-scroll">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Платформа по подписке</th>
+            <th class="col-us">Эта таблица</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Сколько платить</td><td>около 1 000 ₽ каждый месяц</td>
+            <td class="col-us">990 ₽ один раз</td></tr>
+          <tr><td>Кого регистрировать</td><td>ученика и родителя</td>
+            <td class="col-us">никого</td></tr>
+          <tr><td>Что переносить</td><td>всех учеников и историю занятий</td>
+            <td class="col-us">ничего</td></tr>
+          <tr><td>Очные занятия</td><td>сервис заточен под онлайн</td>
+            <td class="col-us">без разницы</td></tr>
+          <tr><td>Без интернета</td><td>не работает</td>
+            <td class="col-us">работает</td></tr>
+          <tr><td>Если сервис закроется</td><td>данные остаются там</td>
+            <td class="col-us">файл лежит у вас на диске</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ ЦЕНА ══════════════ -->
+  <section>
+    <h2>Сколько стоит</h2>
+    <div class="price-card">
+      <div>
+        <div class="price-n">990 <span>₽</span></div>
+        <ul class="price-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Файл .xlsx — ваш навсегда, без срока и без подписки</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Работает в Microsoft Excel и в WPS Office — проверено в обоих</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Макросов нет: при открытии ничего включать не нужно</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Инструкция внутри файла, на русском</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Помогу с настройкой, если что-то не пойдёт</li>
+        </ul>
+      </div>
+      <div class="price-side">
+        <a class="btn btn-primary" href="https://t.me/masterica_tablic">Написать в Telegram</a>
+        <span class="handle">@masterica_tablic</span>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">ШАГ 1</div>
+        <h3>Пишете мне</h3>
+        <p>Расскажете, как ведёте учёт сейчас и поштучно вам платят
+          или абонементами.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">ШАГ 2</div>
+        <h3>Смотрите вживую</h3>
+        <p>Пришлю файл с демо-данными, чтобы посмотреть до оплаты,
+          а не по скриншотам.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">ШАГ 3</div>
+        <h3>Работаете</h3>
+        <p>После оплаты — чистая таблица под ваших учеников
+          и ответы на вопросы.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section>
+    <h2>Частые вопросы</h2>
+    <div class="faq">
+      <details open>
+        <summary>У меня WPS, а не Excel. Заработает?</summary>
+        <div class="ans">Да, и это проверено специально. В таблице нет ни одной
+          формулы массива — именно на них обычно ломаются шаблоны из интернета,
+          причём молча: файл открывается, а половина ячеек пустая.
+          Здесь такого не будет.</div>
+      </details>
+      <details>
+        <summary>Надо включать макросы?</summary>
+        <div class="ans">Нет. Макросов в файле нет совсем, всё считают формулы.
+          При открытии ничего разрешать и подтверждать не нужно —
+          ни в Excel, ни в WPS.</div>
+      </details>
+      <details>
+        <summary>Ученикам и родителям надо где-то регистрироваться?</summary>
+        <div class="ans">Нет. Таблица — только ваш инструмент. Родитель видит
+          максимум готовый отчёт, который вы сами ему отправите.</div>
+      </details>
+      <details>
+        <summary>А с телефона работает?</summary>
+        <div class="ans">Посмотреть можно, заполнять — неудобно, как и любую
+          таблицу на маленьком экране. Нормальный сценарий: отмечать занятия
+          вечером с компьютера или планшета. Если вам нужно именно отмечать
+          на ходу с телефона — честно скажу, это не ваш вариант.</div>
+      </details>
+      <details>
+        <summary>Сколько учеников и занятий помещается?</summary>
+        <div class="ans">50 учеников, 300 занятий и 150 оплат — это примерно
+          полтора года работы. Журнал фильтруется по месяцам, так что длинная
+          история не мешает.</div>
+      </details>
+      <details>
+        <summary>А если не подойдёт?</summary>
+        <div class="ans">Верну деньги, объяснять причину не нужно.
+          Поэтому и предлагаю сначала посмотреть файл с демо-данными:
+          так сразу понятно, ваше это или нет.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══════════════ ФИНАЛ ══════════════ -->
+  <section>
+    <div class="final">
+      <h2>Посмотрите, прежде чем решать</h2>
+      <p class="lede">Напишите — пришлю файл с демо-данными.
+        Открывается в Excel и в WPS, ничего устанавливать не надо.
+        Понравится — поговорим об оплате, нет — просто останется у вас.</p>
+      <a class="btn btn-primary" href="https://t.me/masterica_tablic">Написать в Telegram</a>
+      <span class="handle">@masterica_tablic</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>Мастерская таблиц · учёт учеников и оплат для репетитора</span>
+    <span>Вопросы — в Telegram, @masterica_tablic</span>
+  </footer>
+
+</div>
+
+</body></html>

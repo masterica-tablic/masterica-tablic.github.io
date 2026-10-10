@@ -1,0 +1,1644 @@
+<!doctype html>
+<html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Мастерская таблиц</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+:root{
+  --bg:#F1F0EE; --surface:#FFFFFF; --surface-2:#E9E7E4;
+  --ink:#1C1C1C; --muted:#6F6C68; --hair:#DEDBD7;
+  --accent:#FF7028; --accent-soft:#FFEDE3;
+  --good:#57C5AF; --good-soft:#E4F5F1;
+  --info:#2F5EED; --info-soft:#E7ECFD;
+  --gas-soft:#EDE7FB;
+  --code-bg:#1C1C1C; --code-ink:#E8E6E1; --code-dim:#7E7A73;
+  --shadow:0 1px 2px rgba(28,28,28,.04), 0 8px 24px rgba(28,28,28,.05);
+  --font:"Outfit","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17161A; --surface:#201F24; --surface-2:#2A282F;
+    --ink:#F1EFEB; --muted:#A5A19B; --hair:#343139;
+    --accent:#FF8244; --accent-soft:#3A2419;
+    --good:#6FD3BF; --good-soft:#1E332F;
+    --info:#7C9BFF; --info-soft:#232840;
+    --gas-soft:#2B2340;
+    --code-bg:#121115; --code-ink:#E8E6E1; --code-dim:#6E6A63;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17161A; --surface:#201F24; --surface-2:#2A282F;
+  --ink:#F1EFEB; --muted:#A5A19B; --hair:#343139;
+  --accent:#FF8244; --accent-soft:#3A2419;
+  --good:#6FD3BF; --good-soft:#1E332F;
+  --info:#7C9BFF; --info-soft:#232840;
+  --gas-soft:#2B2340;
+  --code-bg:#121115; --code-ink:#E8E6E1; --code-dim:#6E6A63;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
+}
+
+body{background:var(--bg); color:var(--ink); font-family:var(--font);
+  font-size:17px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:960px; margin:0 auto; padding-inline:20px;}
+
+h1,h2,h3,h4{margin:0; font-weight:500; letter-spacing:-.02em; text-wrap:balance;}
+h1{font-size:clamp(30px,4.6vw,44px); line-height:1.1; font-weight:400;}
+h2{font-size:clamp(23px,3vw,30px); line-height:1.2;}
+h3{font-size:19px;}
+h4{font-size:15px;}
+p{margin:0;}
+.lede{font-size:clamp(16.5px,1.8vw,19px); color:var(--muted); max-width:60ch;}
+.muted{color:var(--muted);}
+.eyebrow{font-size:11.5px; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent);}
+.stack{display:flex; flex-direction:column; gap:18px;}
+
+header{position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+  background:var(--bg); border-bottom:1px solid var(--hair);}
+.bar{max-width:960px; margin:0 auto; padding:14px 20px;
+  display:flex; flex-wrap:wrap; gap:14px 26px; align-items:center;}
+.brand{font-size:19px; font-weight:500; letter-spacing:-.03em;
+  display:flex; align-items:center; gap:9px; margin-right:auto;}
+.brand i{width:9px; height:9px; border-radius:2px; background:var(--accent);
+  display:block; flex:none;}
+nav{display:flex; flex-wrap:wrap; gap:4px;}
+.tab{background:none; border:0; font:inherit; font-size:15.5px; cursor:pointer;
+  color:var(--muted); padding:7px 13px; border-radius:999px;
+  transition:background-color .15s, color .15s;}
+.tab:hover{color:var(--ink); background:var(--surface);}
+.tab[aria-selected="true"]{background:var(--ink); color:var(--bg);}
+.tab:focus-visible{outline:2px solid var(--info); outline-offset:2px;}
+
+main{padding-block:48px 72px;}
+.panel[hidden]{display:none !important;}
+.section{margin-bottom:56px;}
+.section:last-child{margin-bottom:0;}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  padding:12px 22px; border-radius:999px; font-size:15.5px; font-weight:500;
+  text-decoration:none; border:1px solid transparent; cursor:pointer;
+  font-family:inherit; transition:transform .14s, background-color .14s;}
+.btn:hover{transform:translateY(-1px);}
+.btn:focus-visible{outline:3px solid var(--info); outline-offset:3px;}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-primary:hover{background:#E85E18;}
+.btn-ghost{background:var(--surface); color:var(--ink); border-color:var(--hair);}
+.btn-sm{padding:9px 16px; font-size:14px;}
+.btn-danger{background:transparent; color:#B4431A; border-color:#E8C0AC;}
+.btn[aria-disabled="true"]{opacity:.45; pointer-events:none;}
+.row{display:flex; flex-wrap:wrap; gap:12px; align-items:center;}
+
+.cards{display:flex; flex-direction:column; gap:14px; margin-top:26px;}
+.card{background:var(--surface); border-radius:18px; box-shadow:var(--shadow);
+  overflow:hidden;}
+.card-head{width:100%; text-align:left; background:none; border:0; cursor:pointer;
+  font:inherit; color:inherit; padding:0 56px 22px 24px; position:relative;
+  display:flex; flex-direction:column; gap:7px;}
+.card-head:focus-visible{outline:2px solid var(--info); outline-offset:-3px;}
+.card-head::after{content:""; position:absolute; right:24px; top:6px;
+  width:9px; height:9px; border-right:1.8px solid var(--muted);
+  border-bottom:1.8px solid var(--muted); transform:rotate(45deg);
+  transition:transform .2s;}
+.card.open .card-head::after{transform:rotate(-135deg); top:10px;}
+.card-meta{display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  padding:20px 24px 12px;}
+.tag{font-size:11.5px; font-weight:600; letter-spacing:.05em;
+  text-transform:uppercase; padding:4px 9px; border-radius:6px;
+  background:var(--surface-2); color:var(--muted);}
+button.tag{cursor:pointer; border:0; font-family:inherit; opacity:.45;
+  transition:opacity .14s, box-shadow .14s;}
+button.tag:hover{opacity:.8;}
+button.tag[aria-selected="true"]{opacity:1; box-shadow:0 0 0 1.5px currentColor;}
+button.tag:focus-visible{outline:2px solid var(--info); outline-offset:2px;}
+.card-langs-hint{font-size:12.5px; color:var(--muted); margin-left:4px;}
+.tag-js{background:var(--good-soft); color:#1E6B5C;}
+.tag-vba{background:var(--info-soft); color:#1E3FA8;}
+.tag-gas{background:var(--gas-soft); color:#4B2C9B;}
+.tag-new{background:var(--accent-soft); color:#A8410D;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .tag-js{color:#8FE0CF;}
+  :root:not([data-theme="light"]) .tag-vba{color:#9FB6FF;}
+  :root:not([data-theme="light"]) .tag-gas{color:#C3AEFF;}
+  :root:not([data-theme="light"]) .tag-new{color:#FFB184;}
+}
+:root[data-theme="dark"] .tag-js{color:#8FE0CF;}
+:root[data-theme="dark"] .tag-vba{color:#9FB6FF;}
+:root[data-theme="dark"] .tag-gas{color:#C3AEFF;}
+:root[data-theme="dark"] .tag-new{color:#FFB184;}
+.card-body{padding:0 24px 26px; display:flex; flex-direction:column; gap:22px;}
+.card-body[hidden]{display:none !important;}
+.field{display:flex; flex-direction:column; gap:7px;}
+.field h4{color:var(--muted); font-weight:600; font-size:12px;
+  letter-spacing:.09em; text-transform:uppercase;}
+.steplist{margin:0; padding-left:20px; display:flex; flex-direction:column;
+  gap:6px; font-size:16px;}
+.steplist code, .oops-row code{font-family:var(--mono); font-size:13.5px;
+  background:var(--surface-2); padding:2px 6px; border-radius:5px;}
+
+.codebox{border-radius:14px; overflow:hidden; background:var(--code-bg);}
+.codebar{display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.09);}
+.codebar b{color:var(--code-dim); font-size:13px; font-weight:500;}
+.copy:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.copy{margin-left:auto; background:none; border:1px solid rgba(255,255,255,.16);
+  color:var(--code-dim); font:inherit; font-size:13.5px; padding:5px 14px;
+  border-radius:999px; cursor:pointer;}
+.copy:hover{color:var(--code-ink);}
+.codebox pre{margin:0; padding:18px 16px; overflow-x:auto;}
+.codebox code{font-family:var(--mono); font-size:13px; line-height:1.65;
+  color:var(--code-ink); white-space:pre; display:block;}
+
+.grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:26px;}
+.tile{background:var(--surface); border-radius:18px; box-shadow:var(--shadow);
+  padding:24px; display:flex; flex-direction:column; gap:12px;}
+.tile .price{font-size:30px; font-weight:300; letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums; margin-top:auto;}
+.tile .price small{font-size:14px; color:var(--muted); font-weight:400;
+  letter-spacing:0; margin-left:6px;}
+.tile.is-paid{outline:2px solid var(--accent); outline-offset:-2px;}
+.free{color:var(--good); font-weight:500; font-size:17px;}
+
+.note{background:var(--accent-soft); border-radius:14px; padding:18px 20px;
+  font-size:15.5px; line-height:1.5; display:flex; gap:13px; align-items:flex-start;}
+.note svg{flex:none; width:19px; height:19px; margin-top:2px; stroke:var(--accent);
+  fill:none; stroke-width:1.8; stroke-linecap:round;}
+
+.install{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:26px;}
+.install-2{grid-template-columns:repeat(2,1fr);}
+.install .card{padding:26px 24px; display:flex; flex-direction:column; gap:14px;}
+.oops{display:flex; flex-direction:column; gap:1px; margin-top:26px;
+  background:var(--hair); border:1px solid var(--hair);
+  border-radius:16px; overflow:hidden;}
+.oops-row{background:var(--surface); padding:20px 22px;
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); gap:8px 26px;}
+.oops-row .q{font-weight:500;}
+.oops-row .a{color:var(--muted); font-size:16px;}
+
+footer{border-top:1px solid var(--hair); padding-block:34px 52px;
+  font-size:14px; color:var(--muted); display:flex; flex-wrap:wrap;
+  gap:8px 20px; justify-content:space-between;}
+
+/* ══════ редактор ══════ */
+#edit-fab{position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  z-index:60; box-shadow:0 6px 22px rgba(28,28,28,.22);}
+#editor{position:fixed; inset:0; z-index:70; background:var(--bg);
+  overflow-y:auto; padding-bottom:40px;}
+#editor[hidden]{display:none !important;}
+.ed-bar{position:sticky; top:0; z-index:5; background:var(--bg);
+  border-bottom:1px solid var(--hair); padding:14px 20px;
+  display:flex; flex-wrap:wrap; gap:12px; align-items:center;}
+.ed-bar strong{font-weight:500; margin-right:auto; font-size:18px;}
+.ed-body{max-width:900px; margin:0 auto; padding:28px 20px 0;
+  display:flex; flex-direction:column; gap:34px;}
+.ed-sec{display:flex; flex-direction:column; gap:14px;}
+.ed-sec > h3{padding-bottom:10px; border-bottom:1px solid var(--hair);}
+.ed-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+label.f{display:flex; flex-direction:column; gap:6px; font-size:13px;
+  color:var(--muted); font-weight:500;}
+label.f input, label.f textarea{
+  font-family:inherit; font-size:15.5px; color:var(--ink);
+  background:var(--surface); border:1px solid var(--hair); border-radius:11px;
+  padding:11px 13px; width:100%;}
+label.f textarea{resize:vertical; line-height:1.5;}
+label.f textarea.code{font-family:var(--mono); font-size:12.5px; line-height:1.6;
+  white-space:pre; overflow-wrap:normal; overflow-x:auto;}
+label.f input:focus, label.f textarea:focus{outline:2px solid var(--info);
+  outline-offset:1px; border-color:transparent;}
+.ed-item{background:var(--surface); border-radius:16px; padding:20px;
+  display:flex; flex-direction:column; gap:14px; box-shadow:var(--shadow);}
+.ed-item-bar{display:flex; gap:12px; align-items:center;}
+.ed-item-bar b{font-weight:500; margin-right:auto; font-size:16px;}
+.ed-hint{font-size:14px; color:var(--muted); line-height:1.5;}
+.ed-fields{display:flex; flex-direction:column; gap:14px;}
+.ed-fields[hidden]{display:none !important;}
+.ed-msg{font-size:14.5px; padding:10px 14px; border-radius:10px;}
+.ed-msg.ok{background:var(--good-soft); color:#15594B;}
+.ed-msg.err{background:var(--accent-soft); color:#A8410D;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .ed-msg.ok{color:#8FE0CF;}
+  :root:not([data-theme="light"]) .ed-msg.err{color:#FFB184;}
+}
+:root[data-theme="dark"] .ed-msg.ok{color:#8FE0CF;}
+:root[data-theme="dark"] .ed-msg.err{color:#FFB184;}
+
+@media (prefers-reduced-motion: reduce){*{transition:none !important;}}
+@media (max-width:1000px){
+  .install{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:760px){
+  .grid, .install, .install-2, .ed-grid{grid-template-columns:1fr;}
+  .oops-row{grid-template-columns:1fr; gap:5px;}
+}
+@media (max-width:560px){
+  body{font-size:16px;}
+  .brand{margin-right:0; width:100%;}
+  .card-head{padding:0 48px 20px 20px;}
+  .card-meta{padding:18px 20px 10px;}
+  .card-body{padding-inline:20px;}
+}
+</style>
+
+<header>
+  <div class="bar">
+    <div class="brand"><i></i>Мастерская таблиц</div>
+    <nav role="tablist" aria-label="Разделы сайта">
+      <button class="tab" role="tab" aria-selected="true" data-panel="p-home">Главная</button>
+      <button class="tab" role="tab" aria-selected="false" data-panel="p-macros">Макросы</button>
+      <button class="tab" role="tab" aria-selected="false" data-panel="p-tables">Таблицы</button>
+      <button class="tab" role="tab" aria-selected="false" data-panel="p-how">Как вставить макрос</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="panel" id="p-home" role="tabpanel">
+  <div class="section stack">
+    <div class="eyebrow">Excel и WPS Office</div>
+    <h1 id="home-title"></h1>
+    <p class="lede" id="home-p1"></p>
+    <p class="lede" id="home-p2"></p>
+    <div class="row" style="margin-top:8px">
+      <button class="btn btn-primary" data-goto="p-macros">Смотреть макросы</button>
+      <button class="btn btn-ghost" data-goto="p-tables">Смотреть таблицы</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Что здесь есть</h2>
+    <div class="grid">
+      <div class="tile">
+        <div class="eyebrow">Раздел 1</div>
+        <h3>Макросы</h3>
+        <p class="muted">Код в двух версиях — JavaScript для WPS и VBA для Excel.
+          Копируете со страницы, вставляете к себе. К каждому — файл с готовой
+          кнопкой, чтобы не разбираться с меню.</p>
+        <button class="btn btn-ghost btn-sm" data-goto="p-macros" style="align-self:flex-start; margin-top:auto">Открыть</button>
+      </div>
+      <div class="tile">
+        <div class="eyebrow">Раздел 2</div>
+        <h3>Таблицы</h3>
+        <p class="muted">Готовые файлы под конкретную задачу: учёт, деньги,
+          планирование. Маленькие отдаю бесплатно, большие системы —
+          за деньги.</p>
+        <button class="btn btn-ghost btn-sm" data-goto="p-tables" style="align-self:flex-start; margin-top:auto">Открыть</button>
+      </div>
+      <div class="tile">
+        <div class="eyebrow">Раздел 3</div>
+        <h3>Инструкция</h3>
+        <p class="muted">Куда вставлять код в WPS и в Excel, чем отличается
+          модуль от листа и что делать с типичными ошибками при вставке.</p>
+        <button class="btn btn-ghost btn-sm" data-goto="p-how" style="align-self:flex-start; margin-top:auto">Открыть</button>
+      </div>
+      <div class="tile">
+        <div class="eyebrow">Раздел 4</div>
+        <h3>Под вашу задачу</h3>
+        <p class="muted">Если нужного нет — напишите. Разберу задачу, а решение
+          выложу сюда, чтобы пригодилось и другим.</p>
+        <a class="btn btn-primary btn-sm" data-link="telegram" style="align-self:flex-start; margin-top:auto">Написать</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="p-macros" role="tabpanel" hidden="">
+  <div class="section stack">
+    <h1>Макросы</h1>
+    <p class="lede">У каждого — код в двух версиях и файл, где макрос уже
+      вставлен и к нему нарисована кнопка. Если не хотите возиться с редактором,
+      скачивайте файл и работайте в нём.</p>
+    <div class="note">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-5M12 8h.01"></path></svg>
+      <div><b>Макрос меняет данные, и его нельзя отменить кнопкой «Назад».</b>
+        Сохраните копию файла перед первым запуском — это относится
+        к любому макросу, не только к моим.</div>
+    </div>
+  </div>
+  <div class="cards" id="macro-list"></div>
+</div>
+
+<div class="panel" id="p-tables" role="tabpanel" hidden="">
+  <div class="section stack">
+    <h1>Таблицы</h1>
+    <p class="lede">Готовые файлы .xlsx — открываются в Excel и в WPS Office.
+      Макросов внутри нет: при открытии ничего включать и разрешать не нужно.</p>
+  </div>
+  <div class="section">
+    <h2>Бесплатные</h2>
+    <p class="muted" style="margin-top:8px">Маленькие таблицы на одну задачу.
+      Забирайте и пользуйтесь, ничего взамен не нужно.</p>
+    <div class="grid" id="free-list"></div>
+  </div>
+  <div class="section">
+    <h2>Платные</h2>
+    <p class="muted" style="margin-top:8px">Большие системы из нескольких листов,
+      которые считают сами. Оплата один раз, файл остаётся у вас навсегда.</p>
+    <div class="grid" id="paid-list"></div>
+  </div>
+</div>
+
+<div class="panel" id="p-how" role="tabpanel" hidden="">
+  <div class="section stack">
+    <h1>Как вставить макрос</h1>
+    <p class="lede">Пять минут один раз. Дальше макрос живёт в файле
+      и запускается кнопкой.</p>
+  </div>
+
+  <div class="section">
+    <h2>Куда вставлять код</h2>
+    <div class="install">
+      <div class="card">
+        <span class="tag tag-js">WPS Office · JavaScript</span>
+        <h3>WPS Office</h3>
+        <ol class="steplist">
+          <li>Вкладка <b>Инструменты</b> → <b>Макросы</b> → <b>Редактор Visual Basic</b>.
+            В WPS это редактор JavaScript, несмотря на название.</li>
+          <li>Слева выберите <b>ThisWorkbook</b> или создайте модуль.</li>
+          <li>Вставьте код целиком и сохраните файл.</li>
+          <li>Запуск: <b>Инструменты</b> → <b>Макросы</b> → выберите имя → <b>Выполнить</b>.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <span class="tag tag-vba">Microsoft Excel · VBA</span>
+        <h3>Microsoft Excel</h3>
+        <ol class="steplist">
+          <li>Нажмите <code>Alt + F11</code>.</li>
+          <li><b>Insert</b> → <b>Module</b>. Именно модуль, не лист —
+            это разные вещи.</li>
+          <li>Вставьте код в белое поле справа.</li>
+          <li>Сохраните книгу как <code>.xlsm</code>, иначе макрос пропадёт
+            при закрытии.</li>
+          <li>Запуск: <code>Alt + F8</code> → выберите имя → <b>Выполнить</b>.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <span class="tag tag-gas">Google Таблицы · Apps Script</span>
+        <h3>Google Таблицы</h3>
+        <ol class="steplist">
+          <li>Меню <b>Расширения</b> → <b>Apps Script</b>.</li>
+          <li>Удалите пустую заготовку <code>myFunction</code> и вставьте код.</li>
+          <li>Сохраните — значок дискеты — и дайте проекту название.</li>
+          <li>Обновите вкладку с таблицей: в меню появится пункт <b>Макросы</b>.</li>
+          <li>При первом запуске Google попросит разрешение. Это нормально:
+            вы разрешаете доступ собственному скрипту.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Кнопка вместо меню</h2>
+    <p class="lede" style="margin-top:10px">Запускать через меню каждый раз неудобно.
+      Проще один раз положить кнопку на лист.</p>
+    <div class="install">
+      <div class="card">
+        <span class="tag">Excel</span>
+        <ol class="steplist">
+          <li>Вкладка <b>Разработчик</b>. Если её не видно:
+            <b>Файл</b> → <b>Параметры</b> → <b>Настроить ленту</b> →
+            поставьте галочку <b>Разработчик</b>.</li>
+          <li><b>Вставить</b> → <b>Кнопка</b>, нарисуйте её на листе.</li>
+          <li>Excel сам предложит выбрать макрос — выберите нужный.</li>
+          <li>Правой кнопкой по кнопке → <b>Изменить текст</b>.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <span class="tag">WPS</span>
+        <ol class="steplist">
+          <li>Вставьте любую фигуру: <b>Вставка</b> → <b>Фигуры</b> →
+            прямоугольник со скруглением.</li>
+          <li>Впишите в неё название, например «Убрать пустые строки».</li>
+          <li>Правой кнопкой по фигуре → <b>Назначить макрос</b>.</li>
+          <li>Выберите макрос из списка.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <span class="tag">Google</span>
+        <ol class="steplist">
+          <li>Ничего рисовать не нужно: функция <code>onOpen</code> в моём коде
+            сама добавляет меню <b>Макросы</b> вверху таблицы.</li>
+          <li>Если вставляете несколько моих макросов в один проект —
+            оставьте один <code>onOpen</code> и допишите в него
+            остальные пункты через <code>.addItem</code>.</li>
+          <li>Меню появляется после обновления вкладки, не сразу.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Если что-то пошло не так</h2>
+    <p class="lede" style="margin-top:10px">Это те ошибки, на которые я натыкалась
+      сама. Они выглядят страшно, а чинятся в одно действие.</p>
+    <div class="oops">
+      <div class="oops-row">
+        <div class="q">WPS пишет: «Назначение выражений, инициализация переменных
+          и вызовы функций не допускаются за пределами функций»</div>
+        <div class="a">В редакторе WPS на верхнем уровне разрешены только
+          объявления функций. Любая строка вне <code>function</code> — ошибка.
+          В моём коде этого нет: если ошибка появилась, значит,
+          скопировался лишний кусок.</div>
+      </div>
+      <div class="oops-row">
+        <div class="q">Excel: «Compile error: Syntax error» сразу после вставки</div>
+        <div class="a">Чаще всего в начало попала строка
+          <code>Attribute VB_Name = "…"</code>. Она нужна при импорте файла,
+          а при вставке текста её надо удалить.</div>
+      </div>
+      <div class="oops-row">
+        <div class="q">Excel: «Duplicate declaration in current scope»</div>
+        <div class="a">Где-то две переменные с именами, которые отличаются
+          только регистром — <code>names</code> и <code>nameS</code>.
+          Для VBA это одно и то же имя. Переименуйте одну.</div>
+      </div>
+      <div class="oops-row">
+        <div class="q">Excel: «Only comments may appear after End Sub»</div>
+        <div class="a">Строка <code>Const</code> или <code>Dim</code> стоит
+          между процедурами. Все такие объявления переносятся
+          в самое начало модуля.</div>
+      </div>
+      <div class="oops-row">
+        <div class="q">Код почему-то оказался в «Лист1» вместо модуля</div>
+        <div class="a">Редактор прыгает в тот модуль, где нашёл ошибку —
+          и легко вставить код не туда. Проверьте дерево слева, удалите
+          лишние копии: два одинаковых макроса в книге тоже дают ошибку.</div>
+      </div>
+      <div class="oops-row">
+        <div class="q">После макроса Excel будто завис: не перерисовывает экран</div>
+        <div class="a">Excel не завис — в нём осталась выключена отрисовка.
+          Почти каждый макрос гасит её ради скорости строкой
+          <code>Application.ScreenUpdating = False</code> и включает обратно
+          в конце. Если макрос упал посередине, до включения дело не дошло.
+          Лечится запуском любого макроса со строкой
+          <code>Application.ScreenUpdating = True</code> или перезапуском Excel.
+          В моих макросах возврат стоит так, что срабатывает и при ошибке.</div>
+      </div>
+      <div class="oops-row">
+        <div class="q">Google пишет: «Приложение не проверено»</div>
+        <div class="a">Обычное дело для своего же скрипта: Google не проверял
+          именно ваш проект. Нажмите <b>Дополнительные настройки</b> →
+          <b>Перейти к проекту (небезопасно)</b>. Если текста нет —
+          значит, разрешение уже выдано.</div>
+      </div>
+      <div class="oops-row">
+        <div class="q">В Google Таблицах не появилось меню «Макросы»</div>
+        <div class="a">Меню создаёт функция <code>onOpen</code>, а она срабатывает
+          только при открытии. Обновите вкладку с таблицей.</div>
+      </div>
+      <div class="oops-row">
+        <div class="q">Макрос не запускается при открытии файла</div>
+        <div class="a">Так и должно быть. Office блокирует макросы в файлах,
+          скачанных из интернета. Правой кнопкой по файлу → <b>Свойства</b> →
+          внизу галочка <b>Разблокировать</b> → <b>ОК</b>, потом открыть заново.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="wrap">
+  <span>Мастерская таблиц · Excel, WPS Office и Google Таблицы</span>
+  <span>Связь: <a data-link="telegram" style="color:var(--info)">Telegram</a></span>
+</footer>
+
+<button class="btn btn-primary" id="edit-fab" type="button" hidden="">Редактировать</button>
+
+<div id="editor" hidden="">
+  <div class="ed-bar">
+    <strong>Редактирование сайта</strong>
+    <button class="btn btn-ghost btn-sm" id="ed-cancel" type="button">Закрыть без сохранения</button>
+    <button class="btn btn-primary btn-sm" id="ed-save" type="button">Сохранить и опубликовать</button>
+  </div>
+  <div class="ed-body">
+    <div id="ed-msg"></div>
+
+    <div class="ed-sec">
+      <h3>Ссылки</h3>
+      <p class="ed-hint">Пустая ссылка делает кнопку неактивной с подписью «скоро» —
+        сайт не выглядит сломанным, пока файл не залит.</p>
+      <div class="ed-grid" id="ed-links"></div>
+    </div>
+
+    <div class="ed-sec">
+      <h3>Тексты на главной</h3>
+      <div id="ed-home"></div>
+    </div>
+
+    <div class="ed-sec">
+      <h3>Макросы</h3>
+      <p class="ed-hint">Нажмите «Изменить» у нужного макроса — развернётся форма.
+        Внутри по два поля на каждую программу: код и ключ ссылки на готовый файл.
+        Шаги пишите с новой строки, каждая станет пунктом списка.
+        В коде не должно встречаться сочетание «&lt;/script&gt;», оно сломает страницу.</p>
+      <div id="ed-macros" style="display:flex; flex-direction:column; gap:14px"></div>
+      <button class="btn btn-ghost btn-sm" id="ed-add-macro" type="button" style="align-self:flex-start">Добавить макрос</button>
+    </div>
+
+    <div class="ed-sec">
+      <h3>Бесплатные таблицы</h3>
+      <div id="ed-free" style="display:flex; flex-direction:column; gap:14px"></div>
+      <button class="btn btn-ghost btn-sm" id="ed-add-free" type="button" style="align-self:flex-start">Добавить таблицу</button>
+    </div>
+
+    <div class="ed-sec">
+      <h3>Платные таблицы</h3>
+      <div id="ed-paid" style="display:flex; flex-direction:column; gap:14px"></div>
+      <button class="btn btn-ghost btn-sm" id="ed-add-paid" type="button" style="align-self:flex-start">Добавить таблицу</button>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="site-data">
+{
+  "links": {
+    "telegram": "https://t.me/masterica_tablic",
+    "канал": "https://t.me/masterskaya_tablic",
+    "страница-репетитор": "repetitor.html",
+    "файл-объединить-wps": "files/obedinit-faily-wps.zip",
+    "файл-объединить-excel": "files/obedinit-faily-excel.zip",
+    "файл-свод-google": "",
+    "файл-доход-в-час": "files/dohod-v-chas.xlsx",
+    "файл-счётчики": "files/schetchiki.xlsx"
+  },
+  "home": {
+    "title": "Макросы для Excel и WPS — код  или готовые таблицы с кнопками для автоматизации задач.",
+    "p1": "Зачем делать всё вручную, если таблица может справиться сама? Здесь собраны готовые таблицы с уже встроенными макросами и кнопками — открывайте, нажимайте и пользуйтесь! Никаких танцев с кодом и долгих настроек.",
+    "p2": "Для Excel — макросы на VBA, для WPS Office — на JavaScript."
+  },
+  "macros": [
+    {
+      "id": "files",
+      "title": "Объединить несколько файлов в один",
+      "about": "Выбираете сразу несколько файлов Excel или CSV, макрос складывает их строки в одну новую книгу. Шапку берёт только из первого файла.",
+      "when": "Двенадцать выгрузок по месяцам или десяток файлов от разных людей, а нужна одна общая таблица.",
+      "run": [
+        "Запустите макрос: откроется окно выбора файлов.",
+        "Отметьте сразу несколько, удерживая Ctrl.",
+        "Готовая книга «Объединённые данные» откроется сама: строки одной высоты, колонки выровнены."
+      ],
+      "files": {
+        "js": "файл-объединить-wps",
+        "vba": "файл-объединить-excel",
+        "gas": ""
+      },
+      "isNew": true
+    },
+    {
+      "id": "sheets",
+      "title": "Собрать все листы в один",
+      "about": "Переносит данные со всех листов книги на лист «Свод». Шапку берёт с первого листа, с остальных копирует только строки.",
+      "when": "Двенадцать листов по месяцам внутри одной книги, а нужен один общий, чтобы построить сводную.",
+      "run": [
+        "Создайте в книге пустой лист и назовите его ровно: Свод.",
+        "Запустите макрос: в Google Таблицах это меню «Макросы» → «Собрать листы в свод».",
+        "Проверьте результат: строки с разных листов идут подряд."
+      ],
+      "files": {
+        "js": "",
+        "vba": "",
+        "gas": "файл-свод-google"
+      },
+      "isNew": false
+    }
+  ],
+  "free": [
+    {
+      "title": "Доход в час",
+      "about": "Сколько вы реально зарабатываете за час с учётом переписки и правок. Работы ниже вашей средней ставки подсвечиваются.",
+      "file": "файл-доход-в-час"
+    },
+    {
+      "title": "Показания счётчиков",
+      "about": "Вписываете дату и показания — расход и сумма к оплате считаются сами. Тарифы вынесены наверх, меняются одной ячейкой.",
+      "file": "файл-счётчики"
+    }
+  ],
+  "paid": [
+    {
+      "title": "Учёт учеников и оплат для репетитора",
+      "about": "Восемь листов: ученики, занятия, оплаты, расписание на неделю, отчёт родителю, сводка и напоминания. Считает балансы и остаток абонемента, находит занятия, за которые забыли взять деньги.",
+      "price": "990 ₽",
+      "note": "один раз, без подписки",
+      "link": "страница-репетитор"
+    }
+  ]
+}
+</script>
+
+<script type="text/plain" data-code="files-js">
+/**
+ * Объединение нескольких файлов Excel/CSV в один. WPS Spreadsheet (JS).
+ *
+ * Как использовать:
+ *  1. WPS Таблицы -> вкладка "Разработчик" -> "Редактор макросов" (JS)
+ *  2. Вставить код в новый модуль
+ *  3. Запустить MergeFiles()
+ *
+ * Что делает:
+ *  - открывает диалог выбора файлов, можно отметить сразу несколько;
+ *  - создаёт новую книгу с листом "Объединённые данные";
+ *  - копирует строки из каждого файла друг за другом;
+ *  - шапку берёт только из первого файла;
+ *  - в конце приводит лист к единому виду: строки одной высоты,
+ *    колонки не шире разумного, перенос текста выключен.
+ *
+ * На верхнем уровне только объявления функций: это требование редактора WPS.
+ */
+
+function НАСТРОЙКИ() {
+    return {
+        максШирина: 60,      // шире колонку не делаем
+        высотаСтроки: 15,    // одинаковая высота для всех строк
+        xlCenter: -4108      // константы Excel в WPS JS не объявлены, пишем числом
+    };
+}
+
+/**
+ * Приводит готовый лист к единому виду.
+ * Перенос текста: главная причина разной высоты строк. Длинные ответы
+ * из логов растягивают ячейку на пол-экрана.
+ */
+function ПривестиВидВПорядок(ws, lastRow, lastCol) {
+    var s = НАСТРОЙКИ();
+    var c;
+
+    ws.Cells.WrapText = false;
+    ws.Cells.VerticalAlignment = s.xlCenter;
+
+    if (lastRow < 1 || lastCol < 1) { return; }
+
+    // Ширину подбираем по содержимому, но не даём колонке разрастись:
+    // одна длинная фраза иначе сделает её во весь экран.
+    ws.Range(ws.Cells(1, 1), ws.Cells(lastRow, lastCol)).Columns.AutoFit();
+    for (c = 1; c <= lastCol; c++) {
+        if (ws.Columns(c).ColumnWidth > s.максШирина) {
+            ws.Columns(c).ColumnWidth = s.максШирина;
+        }
+    }
+
+    ws.Rows.RowHeight = s.высотаСтроки;
+    ws.Rows(1).Font.Bold = true;
+}
+
+function MergeFiles() {
+    var files = Application.GetOpenFilename(
+        "Excel/CSV файлы (*.xlsx;*.xls;*.csv),*.xlsx;*.xls;*.csv",
+        1,
+        "Выберите файлы для объединения",
+        null,
+        true // разрешить множественный выбор
+    );
+
+    if (!files) {
+        alert("Файлы не выбраны.");
+        return;
+    }
+
+    // При выборе одного файла может вернуться не массив, приводим к массиву
+    if (!(files instanceof Array)) {
+        files = [files];
+    }
+
+    var targetWb = Application.Workbooks.Add();
+    var targetSheet = targetWb.Worksheets(1);
+    targetSheet.Name = "Объединённые данные";
+
+    var targetRow = 1;
+    var maxCol = 0;
+    var headerWritten = false;
+    var i, srcWb, srcSheet, used;
+    var firstRow, lastRow, firstCol, lastCol, startRow, rowsToCopy, colCount;
+
+    for (i = 0; i < files.length; i++) {
+        srcWb = Application.Workbooks.Open(files[i]);
+        srcSheet = srcWb.Worksheets(1);
+        used = srcSheet.UsedRange;
+
+        // ВАЖНО. Rows.Count это КОЛИЧЕСТВО строк в заполненной области,
+        // а не номер последней. Если данные начинаются не с первой строки
+        // (шапка отчёта, пустая строка сверху), хвост молча теряется.
+        firstRow = used.Row;
+        lastRow = used.Row + used.Rows.Count - 1;
+        firstCol = used.Column;
+        lastCol = used.Column + used.Columns.Count - 1;
+
+        startRow = headerWritten ? firstRow + 1 : firstRow;
+        rowsToCopy = lastRow - startRow + 1;
+        colCount = lastCol - firstCol + 1;
+
+        if (rowsToCopy > 0) {
+            // Копируем диапазон целиком: поячеечное присваивание .Value
+            // в WPS JS не работает, свойство только для чтения.
+            srcSheet.Range(
+                srcSheet.Cells(startRow, firstCol),
+                srcSheet.Cells(lastRow, lastCol)
+            ).Copy();
+
+            targetSheet.Paste(targetSheet.Cells(targetRow, 1));
+
+            targetRow = targetRow + rowsToCopy;
+            if (colCount > maxCol) { maxCol = colCount; }
+            headerWritten = true;
+        }
+
+        srcWb.Close(false); // закрыть исходник без сохранения
+    }
+
+    Application.CutCopyMode = false; // сбросить буфер обмена
+
+    // Форматирование приезжает вместе с вставкой, поэтому вид
+    // выравниваем в самом конце, когда все файлы уже собраны.
+    ПривестиВидВПорядок(targetSheet, targetRow - 1, maxCol);
+
+    alert("Готово! Объединено файлов: " + files.length +
+          "\nВсего строк: " + (targetRow - 1));
+}
+</script>
+
+<script type="text/plain" data-code="files-vba">
+' Объединяет несколько файлов Excel или CSV в одну новую книгу.
+' Microsoft Excel: обычный модуль (Insert - Module).
+' Запуск: Alt+F8 -> ОбъединитьФайлы
+'
+' Что делает:
+'  - открывает диалог выбора файлов, можно отметить сразу несколько;
+'  - создаёт новую книгу с листом "Объединённые данные";
+'  - переносит строки из каждого файла друг за другом;
+'  - шапку берёт только из первого файла, у остальных первую строку пропускает;
+'  - в конце приводит лист к единому виду: строки одной высоты,
+'    колонки не шире разумного, перенос текста выключен.
+'
+' Файлы должны иметь одинаковые колонки в одинаковом порядке.
+
+Option Explicit
+
+' Настройки внешнего вида результата, меняйте под себя
+Private Const МАКС_ШИРИНА As Double = 60    ' шире колонку не делаем
+Private Const ВЫСОТА_СТРОКИ As Double = 15  ' одинаковая высота для всех строк
+
+Public Sub ОбъединитьФайлы()
+    Dim files As Variant
+    Dim srcWb As Workbook, targetWb As Workbook
+    Dim srcSheet As Worksheet, targetSheet As Worksheet
+    Dim used As Range
+    Dim firstRow As Long, lastRow As Long
+    Dim firstCol As Long, lastCol As Long
+    Dim startRow As Long, rowsToCopy As Long, colCount As Long
+    Dim targetRow As Long, maxCol As Long
+    Dim i As Long, merged As Long, skipped As Long
+    Dim headerWritten As Boolean, wasOpen As Boolean
+
+    ' Настройки Excel запоминаем заранее. Вернём их в любом случае,
+    ' даже если макрос остановится на полпути.
+    Dim prevScreen As Boolean, prevAlerts As Boolean, prevEvents As Boolean
+    Dim prevCalc As XlCalculation
+    prevScreen = Application.ScreenUpdating
+    prevAlerts = Application.DisplayAlerts
+    prevEvents = Application.EnableEvents
+    prevCalc = Application.Calculation
+
+    files = Application.GetOpenFilename( _
+        FileFilter:="Файлы Excel и CSV (*.xlsx;*.xlsm;*.xls;*.csv),*.xlsx;*.xlsm;*.xls;*.csv", _
+        Title:="Выберите файлы для объединения", _
+        MultiSelect:=True)
+
+    ' Нажали "Отмена": вернётся False, а не список файлов.
+    If VarType(files) = vbBoolean Then
+        MsgBox "Файлы не выбраны.", vbInformation
+        Exit Sub
+    End If
+
+    On Error GoTo Финал
+
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+    Application.Calculation = xlCalculationManual
+
+    Set targetWb = Workbooks.Add(xlWBATWorksheet)   ' книга ровно с одним листом
+    Set targetSheet = targetWb.Worksheets(1)
+    targetSheet.Name = "Объединённые данные"
+
+    targetRow = 1
+
+    For i = LBound(files) To UBound(files)
+        wasOpen = КнигаУжеОткрыта(CStr(files(i)))
+        Set srcWb = Workbooks.Open(FileName:=CStr(files(i)), ReadOnly:=True)
+        Set srcSheet = srcWb.Worksheets(1)
+        Set used = srcSheet.UsedRange
+
+        If Application.WorksheetFunction.CountA(used) = 0 Then
+            skipped = skipped + 1                   ' пустой файл пропускаем
+        Else
+            ' Границы считаем от начала заполненной области, а не от первой
+            ' строки листа: если данные начинаются не с A1, счёт по количеству
+            ' строк даст совсем другой диапазон.
+            firstRow = used.Row
+            lastRow = used.Row + used.Rows.Count - 1
+            firstCol = used.Column
+            lastCol = used.Column + used.Columns.Count - 1
+
+            If headerWritten Then
+                startRow = firstRow + 1             ' со второго файла шапку пропускаем
+            Else
+                startRow = firstRow
+            End If
+
+            rowsToCopy = lastRow - startRow + 1
+            colCount = lastCol - firstCol + 1
+
+            If rowsToCopy > 0 Then
+                ' Переносим только значения, без копирования через буфер.
+                ' Это быстрее, не затирает скопированное пользователем
+                ' и, что важнее, не тащит чужое форматирование,
+                ' из-за которого строки разъезжаются по высоте.
+                targetSheet.Cells(targetRow, 1).Resize(rowsToCopy, colCount).Value = _
+                    srcSheet.Range(srcSheet.Cells(startRow, firstCol), _
+                                   srcSheet.Cells(lastRow, lastCol)).Value
+                targetRow = targetRow + rowsToCopy
+                If colCount > maxCol Then maxCol = colCount
+                headerWritten = True
+                merged = merged + 1
+            Else
+                skipped = skipped + 1               ' в файле только шапка
+            End If
+        End If
+
+        If Not wasOpen Then srcWb.Close SaveChanges:=False
+        Set srcWb = Nothing
+    Next i
+
+    ПривестиВидВПорядок targetSheet, targetRow - 1, maxCol
+
+Финал:
+    ' Если упали посреди работы, закрываем исходник, который сами открыли.
+    If Not srcWb Is Nothing Then
+        If Not wasOpen Then
+            On Error Resume Next
+            srcWb.Close SaveChanges:=False
+            On Error GoTo 0
+        End If
+    End If
+
+    Application.ScreenUpdating = prevScreen
+    Application.DisplayAlerts = prevAlerts
+    Application.EnableEvents = prevEvents
+    Application.Calculation = prevCalc
+
+    If Err.Number <> 0 Then
+        MsgBox "Макрос остановился: " & Err.Description, vbExclamation
+    Else
+        MsgBox "Готово. Объединено файлов: " & merged & _
+               IIf(skipped > 0, ", пропущено пустых: " & skipped, "") & vbLf & _
+               "Всего строк: " & (targetRow - 1), vbInformation
+    End If
+End Sub
+
+
+' Приводит готовый лист к единому виду: одинаковая высота строк,
+' разумная ширина колонок, выключенный перенос текста.
+Private Sub ПривестиВидВПорядок(ByVal ws As Worksheet, _
+                                ByVal lastRow As Long, ByVal lastCol As Long)
+    Dim c As Long
+
+    ' Перенос текста: главная причина, по которой строки разной высоты.
+    ' Длинные ответы из логов растягивают ячейку на пол-экрана.
+    ws.Cells.WrapText = False
+    ws.Cells.VerticalAlignment = xlCenter
+
+    If lastRow < 1 Or lastCol < 1 Then Exit Sub
+
+    ' Подбираем ширину по содержимому, но не даём колонке разрастись:
+    ' одна длинная фраза иначе сделает её во весь экран.
+    ws.Range(ws.Cells(1, 1), ws.Cells(lastRow, lastCol)).Columns.AutoFit
+    For c = 1 To lastCol
+        If ws.Columns(c).ColumnWidth > МАКС_ШИРИНА Then
+            ws.Columns(c).ColumnWidth = МАКС_ШИРИНА
+        End If
+    Next c
+
+    ws.Rows.RowHeight = ВЫСОТА_СТРОКИ
+    ws.Rows(1).Font.Bold = True
+End Sub
+
+
+' Проверяет, открыта ли уже такая книга, чтобы не закрыть файл,
+' с которым человек работает прямо сейчас.
+Private Function КнигаУжеОткрыта(ByVal путь As String) As Boolean
+    Dim wb As Workbook
+    Dim имяФайла As String
+
+    имяФайла = Mid$(путь, InStrRev(путь, "\") + 1)
+    For Each wb In Application.Workbooks
+        If StrComp(wb.Name, имяФайла, vbTextCompare) = 0 Then
+            КнигаУжеОткрыта = True
+            Exit Function
+        End If
+    Next wb
+End Function
+</script>
+
+<script type="text/plain" data-code="sheets-gas">
+/**
+ * Собирает данные со всех листов на лист «Свод».
+ * Лист «Свод» создайте заранее и оставьте пустым.
+ * Шапка берётся с первого листа, с остальных — только строки.
+ */
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('Макросы')
+    .addItem('Собрать листы в свод', 'собратьЛистыВСвод')
+    .addToUi();
+}
+
+function собратьЛистыВСвод() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var target = ss.getSheetByName('Свод');
+
+  if (!target) {
+    ss.toast('Сначала создайте пустой лист с названием: Свод', 'Нет листа', 8);
+    return;
+  }
+
+  var sheets = ss.getSheets();
+  var out = 1;
+  var copied = 0;
+  var i, sh, values, rows, needRows, needCols;
+
+  for (i = 0; i < sheets.length; i++) {
+    sh = sheets[i];
+    if (sh.getName() === 'Свод') { continue; }
+
+    values = sh.getDataRange().getValues();
+    if (values.length === 0) { continue; }
+
+    if (out === 1) {
+      rows = values;                 // с первого листа берём и шапку
+    } else {
+      if (values.length < 2) { continue; }
+      rows = values.slice(1);        // с остальных — без шапки
+    }
+
+    needRows = out + rows.length - 1;
+    if (target.getMaxRows() < needRows) {
+      target.insertRowsAfter(target.getMaxRows(),
+                             needRows - target.getMaxRows());
+    }
+    needCols = rows[0].length;
+    if (target.getMaxColumns() < needCols) {
+      target.insertColumnsAfter(target.getMaxColumns(),
+                                needCols - target.getMaxColumns());
+    }
+
+    target.getRange(out, 1, rows.length, needCols).setValues(rows);
+    out = out + rows.length;
+    copied = copied + 1;
+  }
+
+  ss.toast('Собрано листов: ' + copied + ', строк: ' + (out - 1), 'Готово', 5);
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  var DATA = JSON.parse(document.getElementById("site-data").textContent);
+
+  /* Три платформы. Ярлык сверху карточки = кнопка выбора:
+     вместе с кодом переключаются инструкция и ссылка на файл. */
+  var LANGS = [
+    { key: "js", cls: "tag-js", tag: "WPS · JS", name: "WPS Office",
+      ed: "Код для WPS (JavaScript)",
+      install: [
+        "Инструменты → Макросы → Редактор Visual Basic. Внутри он на JavaScript, несмотря на название.",
+        "Вставьте код в модуль и сохраните файл.",
+        "Запуск: Инструменты → Макросы → имя макроса → Выполнить."
+      ] },
+    { key: "vba", cls: "tag-vba", tag: "Excel · VBA", name: "Microsoft Excel",
+      ed: "Код для Excel (VBA)",
+      install: [
+        "Alt + F11 → Insert → Module. Именно модуль, не лист.",
+        "Вставьте код в белое поле справа.",
+        "Сохраните книгу как .xlsm, иначе макрос пропадёт при закрытии.",
+        "Запуск: Alt + F8 → имя макроса → Выполнить."
+      ] },
+    { key: "gas", cls: "tag-gas", tag: "Google · GAS", name: "Google Таблицы",
+      ed: "Код для Google Таблиц (Apps Script)",
+      install: [
+        "Расширения → Apps Script.",
+        "Удалите заготовку myFunction и вставьте код.",
+        "Сохраните и обновите вкладку с таблицей.",
+        "Сверху появится меню «Макросы». Первый запуск попросит разрешение, это нормально."
+      ] }
+  ];
+  var RENDER_TARGETS = ["macro-list", "free-list", "paid-list",
+                        "ed-links", "ed-home", "ed-macros", "ed-free", "ed-paid"];
+
+  /* ───────── утилиты ───────── */
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) { n.className = cls; }
+    if (text !== undefined && text !== null) { n.textContent = text; }
+    return n;
+  }
+  function codeNode(key) {
+    return document.querySelector('script[data-code="' + key + '"]');
+  }
+  function codeText(key) {
+    var n = codeNode(key);
+    return n ? n.textContent.replace(/^\s*\n/, "").replace(/\s+$/, "") : "";
+  }
+  function setCode(key, text) {
+    var n = codeNode(key);
+    if (!text) { if (n) { n.remove(); } return; }
+    if (!n) {
+      n = document.createElement("script");
+      n.type = "text/plain";
+      n.setAttribute("data-code", key);
+      document.body.appendChild(n);
+    }
+    n.textContent = "\n" + text + "\n";
+  }
+  function fileKey(m, langKey) {
+    return (m.files && m.files[langKey]) || "";
+  }
+  function linkBtn(key, label, cls) {
+    var url = (DATA.links[key] || "").trim();
+    var a = el("a", cls || "btn btn-ghost btn-sm", url ? label : label + " — скоро");
+    if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; }
+    else { a.setAttribute("aria-disabled", "true"); a.setAttribute("role", "link"); }
+    return a;
+  }
+  function slug(v) {
+    var map = { "а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"e","ж":"zh",
+      "з":"z","и":"i","й":"y","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p",
+      "р":"r","с":"s","т":"t","у":"u","ф":"f","х":"h","ц":"c","ч":"ch","ш":"sh",
+      "щ":"sch","ъ":"","ы":"y","ь":"","э":"e","ю":"yu","я":"ya" };
+    var out = "", i, ch;
+    v = String(v || "").toLowerCase();
+    for (i = 0; i < v.length; i++) {
+      ch = v.charAt(i);
+      out += (map[ch] !== undefined) ? map[ch] : (/[a-z0-9]/.test(ch) ? ch : "-");
+    }
+    return out.replace(/-+/g, "-").replace(/^-|-$/g, "") || "macro";
+  }
+
+  /* ───────── карточка макроса ───────── */
+  function buildMacro(m) {
+    var card = el("div", "card");
+    var langs = LANGS.filter(function (L) {
+      return codeText(m.id + "-" + L.key).length > 0;
+    });
+
+    /* ярлыки-переключатели: над заголовком, вне кнопки сворачивания */
+    var meta = el("div", "card-meta");
+    var tagBtns = [];
+    langs.forEach(function (L, i) {
+      var b = el("button", "tag " + L.cls, L.tag);
+      b.type = "button";
+      b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+      b.title = "Показать версию для " + L.name;
+      b.addEventListener("click", function () {
+        if (body.hidden) { toggle(); }
+        pick(L.key);
+      });
+      tagBtns.push({ node: b, key: L.key });
+      meta.appendChild(b);
+    });
+    if (m.isNew) { meta.appendChild(el("span", "tag tag-new", "новое")); }
+    if (langs.length > 1) {
+      meta.appendChild(el("span", "card-langs-hint", "выберите свою программу"));
+    }
+    card.appendChild(meta);
+
+    var head = el("button", "card-head");
+    head.type = "button";
+    head.setAttribute("aria-expanded", "false");
+    head.appendChild(el("h3", null, m.title));
+    head.appendChild(el("p", "muted", m.about));
+    card.appendChild(head);
+
+    var body = el("div", "card-body");
+    body.hidden = true;
+
+    if (m.when) {
+      var f1 = el("div", "field");
+      f1.appendChild(el("h4", null, "Когда пригодится"));
+      f1.appendChild(el("p", null, m.when));
+      body.appendChild(f1);
+    }
+    if (m.run && m.run.length) {
+      var f2 = el("div", "field");
+      f2.appendChild(el("h4", null, "Как пользоваться"));
+      var ol = el("ol", "steplist");
+      m.run.forEach(function (s) { ol.appendChild(el("li", null, s)); });
+      f2.appendChild(ol);
+      body.appendChild(f2);
+    }
+
+    /* куда вставить код — своё для каждой программы */
+    var fInst = el("div", "field");
+    var instTitle = el("h4", null, "Куда вставить код");
+    var instList = el("ol", "steplist");
+    fInst.appendChild(instTitle);
+    fInst.appendChild(instList);
+
+    /* сам код */
+    var fCode = el("div", "field");
+    fCode.appendChild(el("h4", null, "Код"));
+    var box = el("div", "codebox");
+    var bar = el("div", "codebar");
+    var barName = el("b", null, "");
+    var copy = el("button", "copy", "Скопировать");
+    copy.type = "button";
+    bar.appendChild(barName); bar.appendChild(copy);
+    var pre = el("pre"); var code = el("code");
+    pre.appendChild(code);
+    box.appendChild(bar); box.appendChild(pre);
+    fCode.appendChild(box);
+
+    /* файл и ссылка на подробную инструкцию */
+    var row = el("div", "row");
+    var fileSlot = el("span");
+    row.appendChild(fileSlot);
+    var how = el("button", "btn btn-ghost btn-sm", "Подробная инструкция");
+    how.type = "button";
+    how.setAttribute("data-goto", "p-how");
+    row.appendChild(how);
+
+    if (langs.length) {
+      body.appendChild(fInst);
+      body.appendChild(fCode);
+    }
+    body.appendChild(row);
+    card.appendChild(body);
+
+    function pick(key) {
+      var L = null, i;
+      for (i = 0; i < LANGS.length; i++) {
+        if (LANGS[i].key === key) { L = LANGS[i]; }
+      }
+      if (!L) { return; }
+      tagBtns.forEach(function (b) {
+        b.node.setAttribute("aria-selected", b.key === key ? "true" : "false");
+      });
+      instTitle.textContent = "Куда вставить код: " + L.name;
+      instList.textContent = "";
+      L.install.forEach(function (t) { instList.appendChild(el("li", null, t)); });
+      barName.textContent = L.name;
+      code.textContent = codeText(m.id + "-" + key);
+      copy.textContent = "Скопировать";
+      fileSlot.textContent = "";
+      fileSlot.appendChild(linkBtn(fileKey(m, key),
+        "Готовый файл с кнопкой: " + L.name));
+    }
+    if (langs.length) { pick(langs[0].key); }
+
+    copy.addEventListener("click", function () {
+      function manual() {
+        var sel = window.getSelection(), range = document.createRange();
+        range.selectNodeContents(code);
+        sel.removeAllRanges(); sel.addRange(range);
+        copy.textContent = "Выделено — Ctrl+C";
+      }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code.textContent).then(
+            function () { copy.textContent = "Скопировано"; }, manual);
+        } else { manual(); }
+      } catch (e) { manual(); }
+      setTimeout(function () { copy.textContent = "Скопировать"; }, 2600);
+    });
+
+    function toggle() {
+      var open = body.hidden;
+      body.hidden = !open;
+      card.classList.toggle("open", open);
+      head.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    head.addEventListener("click", toggle);
+    return card;
+  }
+
+  function buildTile(t, paid) {
+    var tile = el("div", "tile" + (paid ? " is-paid" : ""));
+    tile.appendChild(el("h3", null, t.title));
+    tile.appendChild(el("p", "muted", t.about));
+    var price = el("div", "price");
+    if (paid) {
+      price.textContent = t.price || "";
+      if (t.note) { price.appendChild(el("small", null, t.note)); }
+    } else {
+      price.appendChild(el("span", "free", "Бесплатно"));
+    }
+    tile.appendChild(price);
+    var row = el("div", "row");
+    if (paid) {
+      row.appendChild(linkBtn(t.link, "Подробнее"));
+      row.appendChild(linkBtn("telegram", "Купить", "btn btn-primary btn-sm"));
+    } else {
+      row.appendChild(linkBtn(t.file, "Скачать"));
+    }
+    tile.appendChild(row);
+    return tile;
+  }
+
+  /* ───────── отрисовка ───────── */
+  function render() {
+    document.getElementById("home-title").textContent = DATA.home.title;
+    document.getElementById("home-p1").textContent = DATA.home.p1;
+    document.getElementById("home-p2").textContent = DATA.home.p2;
+
+    var ml = document.getElementById("macro-list");
+    ml.textContent = "";
+    DATA.macros.forEach(function (m) { ml.appendChild(buildMacro(m)); });
+    var firstHead = ml.querySelector(".card-head");
+    if (firstHead) { firstHead.click(); }
+
+    var fl = document.getElementById("free-list");
+    fl.textContent = "";
+    DATA.free.forEach(function (t) { fl.appendChild(buildTile(t, false)); });
+
+    var pl = document.getElementById("paid-list");
+    pl.textContent = "";
+    DATA.paid.forEach(function (t) { pl.appendChild(buildTile(t, true)); });
+
+    Array.prototype.forEach.call(
+      document.querySelectorAll("[data-link]"), function (a) {
+        var url = (DATA.links[a.getAttribute("data-link")] || "").trim();
+        if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; }
+        else { a.removeAttribute("href"); a.setAttribute("aria-disabled", "true"); }
+      });
+  }
+  render();
+
+  /* ───────── вкладки ───────── */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  function show(id) {
+    tabs.forEach(function (t) {
+      t.setAttribute("aria-selected",
+        t.getAttribute("data-panel") === id ? "true" : "false");
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".panel"),
+      function (p) { p.hidden = p.id !== id; });
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () { show(t.getAttribute("data-panel")); });
+  });
+  document.addEventListener("click", function (e) {
+    var t = e.target && e.target.closest ? e.target.closest("[data-goto]") : null;
+    if (t) { show(t.getAttribute("data-goto")); }
+  });
+
+  /* ═════════ редактор ═════════ */
+  function field(labelText, value, opts) {
+    opts = opts || {};
+    var lab = el("label", "f");
+    lab.appendChild(el("span", null, labelText));
+    var inp = document.createElement(opts.rows ? "textarea" : "input");
+    if (opts.rows) { inp.rows = opts.rows; }
+    if (opts.code) { inp.className = "code"; inp.spellcheck = false; }
+    inp.value = value === undefined || value === null ? "" : value;
+    if (opts.placeholder) { inp.placeholder = opts.placeholder; }
+    lab.appendChild(inp);
+    lab.input = inp;
+    return lab;
+  }
+  /* Карточка в редакторе свёрнута: видно только название и кнопки.
+     Иначе форма с тремя полями кода занимает несколько экранов. */
+  function itemBox(titleText) {
+    var box = el("div", "ed-item");
+    var bar = el("div", "ed-item-bar");
+    var name = el("b", null, titleText);
+    bar.appendChild(name);
+    var fold = el("button", "btn btn-ghost btn-sm", "Изменить");
+    fold.type = "button";
+    var del = el("button", "btn btn-danger btn-sm", "Удалить");
+    del.type = "button";
+    del.addEventListener("click", function () { box.remove(); });
+    bar.appendChild(fold); bar.appendChild(del);
+    box.appendChild(bar);
+    var inner = el("div", "ed-fields");
+    inner.hidden = true;
+    box.appendChild(inner);
+    fold.addEventListener("click", function () {
+      inner.hidden = !inner.hidden;
+      fold.textContent = inner.hidden ? "Изменить" : "Свернуть";
+    });
+    box.fields = inner;
+    box.nameNode = name;
+    return box;
+  }
+
+  var LINK_LABELS = {
+    "telegram": "Telegram для связи",
+    "канал": "Телеграм-канал",
+    "страница-репетитор": "Страница таблицы репетитора"
+  };
+
+  function buildEditor() {
+    var lw = document.getElementById("ed-links");
+    lw.textContent = "";
+    Object.keys(DATA.links).forEach(function (k) {
+      var f = field(LINK_LABELS[k] || k, DATA.links[k], { placeholder: "https://…" });
+      f.dataset.key = k;
+      lw.appendChild(f);
+    });
+
+    var hw = document.getElementById("ed-home");
+    hw.textContent = "";
+    var fTitle = field("Заголовок", DATA.home.title, { rows: 2 });
+    var fP1 = field("Первый абзац", DATA.home.p1, { rows: 4 });
+    var fP2 = field("Второй абзац", DATA.home.p2, { rows: 4 });
+    fTitle.id = "h-title"; fP1.id = "h-p1"; fP2.id = "h-p2";
+    hw.appendChild(fTitle); hw.appendChild(fP1); hw.appendChild(fP2);
+
+    var mw = document.getElementById("ed-macros");
+    mw.textContent = "";
+    DATA.macros.forEach(function (m) { mw.appendChild(macroForm(m)); });
+
+    var fw = document.getElementById("ed-free");
+    fw.textContent = "";
+    DATA.free.forEach(function (t) { fw.appendChild(tableForm(t, false)); });
+    var pw = document.getElementById("ed-paid");
+    pw.textContent = "";
+    DATA.paid.forEach(function (t) { pw.appendChild(tableForm(t, true)); });
+  }
+
+  function macroForm(m) {
+    m = m || { id: "", title: "", about: "", when: "", run: [], files: {}, isNew: true };
+    var box = itemBox(m.title || "Новый макрос");
+    var oldId = m.id || "";
+    var fTitle = field("Название", m.title);
+    var fAbout = field("Короткое описание — видно в списке", m.about, { rows: 3 });
+    var fWhen = field("Когда пригодится", m.when, { rows: 3 });
+    var fRun = field("Как пользоваться — каждый шаг с новой строки",
+                     (m.run || []).join("\n"), { rows: 4 });
+    box.fields.appendChild(fTitle);
+    box.fields.appendChild(fAbout);
+    box.fields.appendChild(fWhen);
+    box.fields.appendChild(fRun);
+
+    /* по полю кода и по полю файла на каждую программу */
+    var parts = LANGS.map(function (L) {
+      var head = el("h4", null, L.name);
+      head.style.marginTop = "6px";
+      head.style.color = "var(--muted)";
+      var fc = field(L.ed + ", пусто если этой версии нет",
+                     codeText(oldId + "-" + L.key), { rows: 10, code: true });
+      var ff = field("Ключ ссылки на готовый файл для " + L.name,
+                     fileKey(m, L.key), { placeholder: "файл-объединить-excel" });
+      box.fields.appendChild(head);
+      box.fields.appendChild(fc);
+      box.fields.appendChild(ff);
+      return { key: L.key, code: fc, file: ff };
+    });
+
+    fTitle.input.addEventListener("input", function () {
+      box.nameNode.textContent = fTitle.input.value || "Новый макрос";
+    });
+
+    box.collect = function (usedIds) {
+      var title = fTitle.input.value.trim();
+      var anyCode = parts.some(function (p) { return p.code.input.value.trim(); });
+      /* пустую форму пропускаем, всё остальное сохраняем обязательно */
+      if (!title && !anyCode) { return null; }
+      var id = oldId || slug(title);
+      while (usedIds[id]) { id = id + "-2"; }
+      usedIds[id] = true;
+      var files = {};
+      parts.forEach(function (p) {
+        if (id !== oldId && oldId) { setCode(oldId + "-" + p.key, ""); }
+        setCode(id + "-" + p.key, p.code.input.value.trim());
+        files[p.key] = p.file.input.value.trim();
+      });
+      return {
+        id: id,
+        title: title || "Без названия",
+        about: fAbout.input.value.trim(),
+        when: fWhen.input.value.trim(),
+        run: fRun.input.value.split("\n").map(function (s) { return s.trim(); })
+              .filter(function (s) { return s.length > 0; }),
+        files: files,
+        isNew: !!m.isNew
+      };
+    };
+    return box;
+  }
+
+  function tableForm(t, paid) {
+    t = t || {};
+    var box = itemBox(t.title || "Новая таблица");
+    var fTitle = field("Название", t.title);
+    var fAbout = field("Описание", t.about, { rows: 3 });
+    box.fields.appendChild(fTitle); box.fields.appendChild(fAbout);
+    var fPrice, fNote, fLink, fFile;
+    if (paid) {
+      fPrice = field("Цена", t.price, { placeholder: "990 ₽" });
+      fNote = field("Подпись у цены", t.note, { placeholder: "один раз, без подписки" });
+      fLink = field("Ключ ссылки «Подробнее»", t.link, { placeholder: "страница-репетитор" });
+      box.fields.appendChild(fPrice);
+      box.fields.appendChild(fNote);
+      box.fields.appendChild(fLink);
+    } else {
+      fFile = field("Ключ ссылки на файл", t.file, { placeholder: "файл-подписки" });
+      box.fields.appendChild(fFile);
+    }
+    fTitle.input.addEventListener("input", function () {
+      box.nameNode.textContent = fTitle.input.value || "Новая таблица";
+    });
+    box.collect = function () {
+      var title = fTitle.input.value.trim();
+      var about = fAbout.input.value.trim();
+      if (!title && !about) { return null; }
+      var o = { title: title || "Без названия", about: about };
+      if (paid) {
+        o.price = fPrice.input.value.trim();
+        o.note = fNote.input.value.trim();
+        o.link = fLink.input.value.trim();
+      } else {
+        o.file = fFile.input.value.trim();
+      }
+      return o;
+    };
+    return box;
+  }
+
+  function collectAll() {
+    var links = {};
+    Array.prototype.forEach.call(
+      document.querySelectorAll("#ed-links > label.f"), function (f) {
+        links[f.dataset.key] = f.input.value.trim();
+      });
+    var out = {
+      links: links,
+      home: {
+        title: document.getElementById("h-title").input.value.trim(),
+        p1: document.getElementById("h-p1").input.value.trim(),
+        p2: document.getElementById("h-p2").input.value.trim()
+      },
+      macros: [], free: [], paid: []
+    };
+    var usedIds = {};
+    function gather(containerId, arr, arg) {
+      Array.prototype.forEach.call(
+        document.getElementById(containerId).children, function (box) {
+          if (typeof box.collect !== "function") { return; }
+          var v = box.collect(arg);
+          if (v) { arr.push(v); }
+        });
+    }
+    gather("ed-macros", out.macros, usedIds);
+    gather("ed-free", out.free);
+    gather("ed-paid", out.paid);
+    return out;
+  }
+
+  /* собирает полный документ для публикации */
+  function buildDocument(newData) {
+    var clone = document.documentElement.cloneNode(true);
+    RENDER_TARGETS.forEach(function (id) {
+      var n = clone.querySelector("#" + id);
+      if (n) { n.textContent = ""; }
+    });
+    var edt = clone.querySelector("#editor");
+    if (edt) { edt.setAttribute("hidden", ""); }
+    var fab = clone.querySelector("#edit-fab");
+    if (fab) { fab.setAttribute("hidden", ""); }
+    var msg = clone.querySelector("#ed-msg");
+    if (msg) { msg.textContent = ""; }
+
+    /* Публикуемся при открытом редакторе: на теле висит overflow:hidden,
+       а кнопка «Сохранить» выключена. Снимаем, иначе попадёт в файл. */
+    var bd = clone.querySelector("body");
+    if (bd) { bd.removeAttribute("style"); }
+    var sv = clone.querySelector("#ed-save");
+    if (sv) {
+      sv.removeAttribute("disabled");
+      sv.textContent = "Сохранить и опубликовать";
+    }
+    clone.querySelector("#home-title").textContent = "";
+    clone.querySelector("#home-p1").textContent = "";
+    clone.querySelector("#home-p2").textContent = "";
+    Array.prototype.forEach.call(clone.querySelectorAll(".panel"), function (p) {
+      if (p.id === "p-home") { p.removeAttribute("hidden"); }
+      else { p.setAttribute("hidden", ""); }
+    });
+    Array.prototype.forEach.call(clone.querySelectorAll(".tab"), function (t) {
+      t.setAttribute("aria-selected",
+        t.getAttribute("data-panel") === "p-home" ? "true" : "false");
+    });
+    Array.prototype.forEach.call(clone.querySelectorAll("[data-link]"), function (a) {
+      a.removeAttribute("href"); a.removeAttribute("target");
+      a.removeAttribute("rel"); a.removeAttribute("aria-disabled");
+    });
+    clone.querySelector("#site-data").textContent =
+      "\n" + JSON.stringify(newData, null, 2) + "\n";
+    return "<!doctype html>\n" + clone.outerHTML;
+  }
+
+  function say(text, kind) {
+    var box = document.getElementById("ed-msg");
+    box.textContent = "";
+    if (!text) { return; }
+    box.appendChild(el("div", "ed-msg " + kind, text));
+  }
+
+  var editor = document.getElementById("editor");
+  var fab = document.getElementById("edit-fab");
+
+  document.getElementById("ed-add-macro").addEventListener("click", function () {
+    document.getElementById("ed-macros").appendChild(macroForm(null));
+  });
+  document.getElementById("ed-add-free").addEventListener("click", function () {
+    document.getElementById("ed-free").appendChild(tableForm(null, false));
+  });
+  document.getElementById("ed-add-paid").addEventListener("click", function () {
+    document.getElementById("ed-paid").appendChild(tableForm(null, true));
+  });
+  document.getElementById("ed-cancel").addEventListener("click", function () {
+    editor.hidden = true;
+    document.body.style.overflow = "";
+  });
+
+  function openEditor() {
+    buildEditor();
+    say("", "ok");
+    editor.hidden = false;
+    document.body.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
+  }
+
+  /* на обычном хостинге страница не может сохранить себя сама,
+     поэтому отдаёт готовый index.html файлом */
+  function saveAsFile() {
+    var fresh, html;
+    try { fresh = collectAll(); }
+    catch (e) { say("Не получилось собрать данные: " + e.message, "err"); return; }
+    try { html = buildDocument(fresh); }
+    catch (e) { say("Ошибка при сборке страницы: " + e.message, "err"); return; }
+    var url = URL.createObjectURL(new Blob([html], { type: "text/html;charset=utf-8" }));
+    var a = document.createElement("a");
+    a.href = url; a.download = "index.html";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+    say("Файл index.html скачан. Загрузите его на GitHub вместо старого, и сайт обновится через минуту.", "ok");
+  }
+
+  var onPlatform = (typeof claude !== "undefined" && claude && typeof claude.use === "function");
+
+  if (onPlatform) {
+    claude.use("artifact").then(function (artifact) {
+      if (!artifact) { return; }        /* читатель, кнопки редактирования нет */
+      fab.hidden = false;
+      fab.addEventListener("click", openEditor);
+      document.getElementById("ed-save").addEventListener("click", function () {
+        var btn = this;
+        var fresh;
+        try { fresh = collectAll(); }
+        catch (e) { say("Не получилось собрать данные: " + e.message, "err"); return; }
+        btn.disabled = true;
+        btn.textContent = "Сохраняю…";
+        say("", "ok");
+        var html;
+        try { html = buildDocument(fresh); }
+        catch (e) {
+          say("Ошибка при сборке страницы: " + e.message, "err");
+          btn.disabled = false; btn.textContent = "Сохранить и опубликовать";
+          return;
+        }
+        artifact.publish(html).then(function () {
+          say("Сохранено. Страница сейчас перезагрузится.", "ok");
+        }, function (err) {
+          var code = err && err.code ? err.code : "";
+          var text = code === "conflict"
+            ? "Кто-то сохранил сайт раньше вас. Обновите страницу и повторите правки."
+            : "Не удалось сохранить: " + (err && err.message ? err.message : code);
+          say(text, "err");
+          btn.disabled = false;
+          btn.textContent = "Сохранить и опубликовать";
+        });
+      });
+    }, function () { /* редактирование недоступно, сайт работает как обычно */ });
+  } else {
+    /* редактор открывается только по адресу с #edit, посетители его не видят */
+    var armLocalEditor = function () {
+      if (location.hash !== "#edit") { return; }
+      fab.hidden = false;
+      document.getElementById("ed-save").textContent = "Скачать обновлённый index.html";
+    };
+    fab.addEventListener("click", openEditor);
+    document.getElementById("ed-save").addEventListener("click", saveAsFile);
+    window.addEventListener("hashchange", armLocalEditor);
+    armLocalEditor();
+  }
+})();
+</script>
+
+</body></html>
