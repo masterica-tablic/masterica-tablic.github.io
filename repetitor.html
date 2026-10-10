@@ -265,7 +265,41 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   .cmp{font-size:15px;}
   .cmp th, .cmp td{padding:13px 11px;}
 }
+
+/* ---------- шапка с возвратом ---------- */
+.topbar{position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
+  background:var(--bg); border-bottom:1px solid var(--hair);}
+.topbar-in{max-width:1080px; margin:0 auto; padding:13px 20px;
+  display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center;}
+.topbar a{text-decoration:none; color:var(--muted); font-size:15.5px;
+  padding:7px 13px; border-radius:999px; transition:background-color .15s, color .15s;}
+.topbar a:hover{color:var(--ink); background:var(--surface);}
+.topbar a:focus-visible{outline:2px solid var(--info); outline-offset:2px;}
+.topbar .back{margin-right:auto; color:var(--ink); font-size:18px; font-weight:500;
+  letter-spacing:-.03em; display:flex; align-items:center; gap:10px; padding-left:4px;}
+.topbar .back i{width:9px; height:9px; border-radius:2px; background:var(--accent);
+  display:block; flex:none; transition:transform .15s;}
+.topbar .back:hover{background:none;}
+.topbar .back:hover i{transform:scale(1.35);}
+.topnav{display:flex; flex-wrap:wrap; gap:4px;}
+.crumb{font-size:14px; color:var(--muted); padding-top:26px;}
+.crumb a{color:var(--info);}
+@media (max-width:520px){
+  .topbar .back{font-size:16.5px;}
+  .topbar a{font-size:14.5px; padding:6px 10px;}
+}
 </style>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="back" href="index.html"><i></i>Мастерская таблиц</a>
+    <nav class="topnav">
+      <a href="index.html#macros">Макросы</a>
+      <a href="index.html#tables">Все таблицы</a>
+      <a href="index.html#how">Как вставить макрос</a>
+    </nav>
+  </div>
+</header>
 
 <div class="wrap">
 
@@ -293,7 +327,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
       </div>
       <div class="stat">
         <div class="stat-n">990 <span>₽</span></div>
-        <div class="stat-l">один раз и навсегда — не в месяц,
+        <div class="stat-l">один раз и навсегда, не в месяц
           не за ученика</div>
       </div>
       <div class="stat">
@@ -310,9 +344,9 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
     <div class="pains">
       <div class="pain">Помните, что кто-то не заплатил, но не помните точно кто
         и за сколько занятий.</div>
-      <div class="pain">Занятие перенесли, потом ещё раз, и в итоге непонятно —
+      <div class="pain">Занятие перенесли, потом ещё раз, и в итоге непонятно,
         оно было или нет.</div>
-      <div class="pain">Родитель спрашивает «сколько с меня», и вы пересчитываете
+      <div class="pain">Родитель спрашивает "сколько с меня", и вы пересчитываете
         по переписке и календарю.</div>
       <div class="pain">Абонемент вроде закончился, но вы не уверены,
         и лишний раз спросить неловко.</div>
@@ -324,24 +358,24 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
     <div class="split split-wide">
       <div class="stack">
         <div>
-          <div class="eyebrow">Колонка «Проверка»</div>
-          <h2>Главное — она ловит потерянные деньги</h2>
+          <div class="eyebrow">Колонка "Проверка"</div>
+          <h2>Главное: она ловит потерянные деньги</h2>
         </div>
         <p class="lede">Занятие прошло, а статус в журнале остался
-          «Запланировано». В доход оно не попало, в долг ученику — тоже.
+          "Запланировано". В доход оно не попало, в долг ученику тоже.
           Такие строки таблица показывает сама, прямо в журнале.</p>
         <p class="muted">Она же ловит опечатку в имени ученика, пустую дату
           и занятие, которое стоит будущим числом, но уже помечено проведённым.</p>
       </div>
 
       <div class="sheet" role="img"
-           aria-label="Фрагмент листа «Занятия»: три предупреждения колонки «Проверка»">
-        <div class="sheet-bar">Занятия · колонка «Проверка»</div>
-        <div class="warn"><b>10.09</b><span>Петров Максим — занятие прошло,
+           aria-label="Фрагмент листа "Занятия": три предупреждения колонки "Проверка"">
+        <div class="sheet-bar">Занятия · колонка "Проверка"</div>
+        <div class="warn"><b>10.09</b><span>Петров Максим, занятие прошло,
           отметьте статус. Не начислено 1 800 ₽</span></div>
-        <div class="warn"><b>11.09</b><span>Иванова Алиса — занятие прошло,
+        <div class="warn"><b>11.09</b><span>Иванова Алиса, занятие прошло,
           отметьте статус. Не начислено 1 500 ₽</span></div>
-        <div class="warn"><b>11.09</b><span>Смирнова Ева — занятие прошло,
+        <div class="warn"><b>11.09</b><span>Смирнова Ева, занятие прошло,
           отметьте статус. Не начислено 1 200 ₽</span></div>
       </div>
     </div>
@@ -351,9 +385,9 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   <section>
     <div class="split">
       <div class="stack-s">
-        <h3>Баланс по каждому ученику — всегда актуальный</h3>
+        <h3>Баланс по каждому ученику всегда актуальный</h3>
         <div class="sheet" role="img"
-             aria-label="Фрагмент листа «Ученики» с балансами и остатком абонемента">
+             aria-label="Фрагмент листа "Ученики" с балансами и остатком абонемента">
           <div class="sheet-bar">Ученики</div>
           <div class="sheet-scroll">
             <table class="grid">
@@ -363,28 +397,28 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
               </tr></thead>
               <tbody>
                 <tr><td>Иванова Алиса</td><td>Поштучно</td>
-                  <td class="num">0 ₽</td><td class="num">—</td></tr>
+                  <td class="num">0 ₽</td><td class="num">нет</td></tr>
                 <tr><td>Петров Максим</td><td>Пакет</td>
                   <td class="num"><span class="chip chip-ok">+1 800 ₽</span></td>
                   <td class="num">1 занятие</td></tr>
                 <tr><td>Смирнова Ева</td><td>Поштучно</td>
                   <td class="num"><span class="chip chip-debt">−1 200 ₽</span></td>
-                  <td class="num">—</td></tr>
+                  <td class="num">нет</td></tr>
                 <tr><td>Кокорев Лёша</td><td>Поштучно</td>
                   <td class="num"><span class="chip chip-ok">+100 ₽</span></td>
-                  <td class="num">—</td></tr>
+                  <td class="num">нет</td></tr>
               </tbody>
             </table>
           </div>
         </div>
-        <p class="muted" style="font-size:15px">Персиковым — кто должен,
-          лаймовым — у кого аванс. Пересчитывается при каждом изменении.</p>
+        <p class="muted" style="font-size:15px">Персиковым отмечен тот, кто должен,
+          лаймовым тот, у кого аванс. Пересчитывается при каждом изменении.</p>
       </div>
 
       <div class="stack-s">
         <h3>И готовый текст, который остаётся только отправить</h3>
         <div class="sheet" role="img"
-             aria-label="Фрагмент листа «Напоминания» с готовыми сообщениями">
+             aria-label="Фрагмент листа "Напоминания" с готовыми сообщениями">
           <div class="sheet-bar">Напоминания · на сегодня</div>
           <div class="msg">
             <div class="msg-top">
@@ -393,7 +427,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
               <span class="msg-meta">к оплате 1 200 ₽</span>
             </div>
             <div class="msg-text">Добрый день! Напоминаю про оплату занятий:
-              к оплате 1 200 ₽. Реквизиты прежние — будет удобно, переведите
+              к оплате 1 200 ₽. Реквизиты прежние. Будет удобно, переведите
               до следующего занятия. Спасибо!</div>
           </div>
           <div class="msg">
@@ -407,7 +441,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
           </div>
         </div>
         <p class="muted" style="font-size:15px">Список собирается сам при открытии
-          файла. Скопировали — отправили.</p>
+          файла. Скопировали и отправили.</p>
       </div>
     </div>
   </section>
@@ -427,7 +461,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div>
         <h3>Занятия</h3>
-        <p>Журнал на 300 строк: дата, время, статус. И колонка «Проверка».</p>
+        <p>Журнал на 300 строк: дата, время, статус. И колонка "Проверка".</p>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/><path d="M3 11h18M7 15h4"/></svg></div>
@@ -437,12 +471,12 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 5h18v16H3z"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
         <h3>Расписание</h3>
-        <p>Сетка на неделю. Несколько учеников в один час — нормально.</p>
+        <p>Сетка на неделю. Несколько учеников в один час, это нормально.</p>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg></div>
         <h3>Отчёт родителю</h3>
-        <p>Выбрали ученика и период — получили готовый текст для отправки.</p>
+        <p>Выбрали ученика и период, получили готовый текст для отправки.</p>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 20V9M11 20V4M16 20v-7M21 20v-4"/></svg></div>
@@ -457,7 +491,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg></div>
         <h3>Инструкция</h3>
-        <p>Внутри файла, на русском. Разобраться — пять минут.</p>
+        <p>Внутри файла, на русском. Разобраться можно за пять минут.</p>
       </div>
     </div>
   </section>
@@ -466,7 +500,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   <section>
     <h2>Чем это отличается от платформ по подписке</h2>
     <p class="lede" style="margin-top:14px">Платформа нужна тем, кто переносит
-      на неё всё преподавание. Если вам нужен только учёт — вы переплачиваете
+      на неё всё преподавание. Если вам нужен только учёт, вы переплачиваете
       за то, чем не пользуетесь.</p>
 
     <div class="sheet-scroll">
@@ -504,9 +538,9 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
         <div class="price-n">990 <span>₽</span></div>
         <ul class="price-list">
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-            Файл .xlsx — ваш навсегда, без срока и без подписки</li>
+            Файл .xlsx остаётся вашим навсегда, без срока и без подписки</li>
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-            Работает в Microsoft Excel и в WPS Office — проверено в обоих</li>
+            Работает в Microsoft Excel и в WPS Office, проверено в обоих</li>
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
             Макросов нет: при открытии ничего включать не нужно</li>
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
@@ -537,7 +571,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
       <div class="step">
         <div class="step-n">ШАГ 3</div>
         <h3>Работаете</h3>
-        <p>После оплаты — чистая таблица под ваших учеников
+        <p>После оплаты пришлю чистую таблицу под ваших учеников
           и ответы на вопросы.</p>
       </div>
     </div>
@@ -550,31 +584,31 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
       <details open>
         <summary>У меня WPS, а не Excel. Заработает?</summary>
         <div class="ans">Да, и это проверено специально. В таблице нет ни одной
-          формулы массива — именно на них обычно ломаются шаблоны из интернета,
+          формулы массива, именно на них обычно ломаются шаблоны из интернета,
           причём молча: файл открывается, а половина ячеек пустая.
           Здесь такого не будет.</div>
       </details>
       <details>
         <summary>Надо включать макросы?</summary>
         <div class="ans">Нет. Макросов в файле нет совсем, всё считают формулы.
-          При открытии ничего разрешать и подтверждать не нужно —
+          При открытии ничего разрешать и подтверждать не нужно
           ни в Excel, ни в WPS.</div>
       </details>
       <details>
         <summary>Ученикам и родителям надо где-то регистрироваться?</summary>
-        <div class="ans">Нет. Таблица — только ваш инструмент. Родитель видит
+        <div class="ans">Нет. Таблица это только ваш инструмент. Родитель видит
           максимум готовый отчёт, который вы сами ему отправите.</div>
       </details>
       <details>
         <summary>А с телефона работает?</summary>
-        <div class="ans">Посмотреть можно, заполнять — неудобно, как и любую
+        <div class="ans">Посмотреть можно, заполнять неудобно, как и любую
           таблицу на маленьком экране. Нормальный сценарий: отмечать занятия
           вечером с компьютера или планшета. Если вам нужно именно отмечать
-          на ходу с телефона — честно скажу, это не ваш вариант.</div>
+          на ходу с телефона, честно скажу, это не ваш вариант.</div>
       </details>
       <details>
         <summary>Сколько учеников и занятий помещается?</summary>
-        <div class="ans">50 учеников, 300 занятий и 150 оплат — это примерно
+        <div class="ans">50 учеников, 300 занятий и 150 оплат, это примерно
           полтора года работы. Журнал фильтруется по месяцам, так что длинная
           история не мешает.</div>
       </details>
@@ -591,17 +625,18 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   <section>
     <div class="final">
       <h2>Посмотрите, прежде чем решать</h2>
-      <p class="lede">Напишите — пришлю файл с демо-данными.
+      <p class="lede">Напишите, и пришлю файл с демо-данными.
         Открывается в Excel и в WPS, ничего устанавливать не надо.
-        Понравится — поговорим об оплате, нет — просто останется у вас.</p>
+        Понравится, поговорим об оплате. Нет, просто останется у вас.</p>
       <a class="btn btn-primary" href="https://t.me/masterica_tablic">Написать в Telegram</a>
       <span class="handle">@masterica_tablic</span>
     </div>
   </section>
 
   <footer>
-    <span>Мастерская таблиц · учёт учеников и оплат для репетитора</span>
-    <span>Вопросы — в Telegram, @masterica_tablic</span>
+    <span><a href="index.html" style="color:var(--info)">Мастерская таблиц</a>
+      · учёт учеников и оплат для репетитора</span>
+    <span>Вопросы в Telegram: @masterica_tablic</span>
   </footer>
 
 </div>
