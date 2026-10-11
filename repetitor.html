@@ -94,6 +94,9 @@ p{margin:0;}
   display:flex; align-items:baseline; gap:8px;
 }
 .stat-n span{font-size:16px; font-weight:400; letter-spacing:0; color:var(--muted);}
+.stat-k{font-size:11px; font-weight:700; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:12px;}
+.stat.is-accent .stat-k{color:var(--accent);}
 .stat-l{margin-top:14px; font-size:14.5px; color:var(--muted); line-height:1.4;}
 .stat.is-accent .stat-n{color:var(--accent);}
 
@@ -307,12 +310,15 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   <section class="hero">
     <div class="stack">
       <div>
-        <div class="eyebrow">Учёт учеников и оплат · Excel и WPS</div>
-        <h1>Таблица находит занятия,<br>за которые вы <em>забыли взять деньги</em></h1>
+        <div class="eyebrow">Учёт учеников, занятий и оплат · Excel и WPS</div>
+        <h1>Таблица сама замечает то,<br>что вы <em>упустили</em></h1>
       </div>
-      <p class="lede">Вы отмечаете занятия и оплаты. Всё остальное считается само:
-        кто сколько должен, сколько осталось от абонемента, кому сегодня написать.
-        Без подписки, без регистрации учеников, без макросов.</p>
+      <p class="lede">Занятие прошло, а статус не отмечен. Абонемент заканчивается.
+        Долг висит третью неделю. Вы вносите занятия и оплаты, остальное таблица
+        считает сама и показывает, что требует внимания сегодня.</p>
+      <p class="muted" style="max-width:58ch">Ученики, журнал занятий, оплаты,
+        расписание на неделю, отчёт родителю и сводка по доходу. Без подписки,
+        без регистрации учеников, без макросов.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://t.me/masterica_tablic">Написать и забрать таблицу</a>
         <span class="handle">Отвечаю в Telegram: <b>@masterica_tablic</b></span>
@@ -320,20 +326,23 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
     </div>
 
     <div class="stats">
-      <div class="stat is-accent">
-        <div class="stat-n">4 500 <span>₽</span></div>
-        <div class="stat-l">нашлось в демо-примере: три занятия прошли,
-          а деньги за них не начислены</div>
+      <div class="stat">
+        <div class="stat-k">Внутри</div>
+        <div class="stat-n">8 <span>листов</span></div>
+        <div class="stat-l">ученики, занятия, оплаты, расписание, отчёт родителю,
+          сводка, напоминания и инструкция</div>
       </div>
       <div class="stat">
+        <div class="stat-k">Регистраций</div>
+        <div class="stat-n">0</div>
+        <div class="stat-l">ученикам и родителям не надо заводить кабинеты
+          и что-то устанавливать</div>
+      </div>
+      <div class="stat is-accent">
+        <div class="stat-k">Цена</div>
         <div class="stat-n">990 <span>₽</span></div>
         <div class="stat-l">один раз и навсегда, не в месяц
-          не за ученика</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">0</div>
-        <div class="stat-l">регистраций: ученикам и родителям
-          не надо заводить кабинеты</div>
+          и не за ученика</div>
       </div>
     </div>
   </section>
@@ -342,8 +351,8 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   <section>
     <h2>Знакомо?</h2>
     <div class="pains">
-      <div class="pain">Помните, что кто-то не заплатил, но не помните точно кто
-        и за сколько занятий.</div>
+      <div class="pain">Чтобы вспомнить, что у вас на этой неделе, приходится
+        листать переписку с четырьмя родителями.</div>
       <div class="pain">Занятие перенесли, потом ещё раз, и в итоге непонятно,
         оно было или нет.</div>
       <div class="pain">Родитель спрашивает "сколько с меня", и вы пересчитываете
@@ -359,13 +368,14 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
       <div class="stack">
         <div>
           <div class="eyebrow">Колонка "Проверка"</div>
-          <h2>Главное: она ловит потерянные деньги</h2>
+          <h2>Главное: она видит то, что пропустили вы</h2>
         </div>
         <p class="lede">Занятие прошло, а статус в журнале остался
           "Запланировано". В доход оно не попало, в долг ученику тоже.
-          Такие строки таблица показывает сама, прямо в журнале.</p>
-        <p class="muted">Она же ловит опечатку в имени ученика, пустую дату
-          и занятие, которое стоит будущим числом, но уже помечено проведённым.</p>
+          Опечатка в имени, пустая дата, занятие будущим числом с пометкой
+          "проведено". Такие строки таблица показывает сама, прямо в журнале.</p>
+        <p class="muted">Это не отчёт, который надо открывать и сверять.
+          Предупреждение появляется в той же строке, где вы работаете.</p>
       </div>
 
       <div class="sheet" role="img"
@@ -373,10 +383,10 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
         <div class="sheet-bar">Занятия · колонка "Проверка"</div>
         <div class="warn"><b>10.09</b><span>Петров Максим, занятие прошло,
           отметьте статус. Не начислено 1 800 ₽</span></div>
-        <div class="warn"><b>11.09</b><span>Иванова Алиса, занятие прошло,
-          отметьте статус. Не начислено 1 500 ₽</span></div>
-        <div class="warn"><b>11.09</b><span>Смирнова Ева, занятие прошло,
-          отметьте статус. Не начислено 1 200 ₽</span></div>
+        <div class="warn"><b>11.09</b><span>Пустая дата: занятие не попадёт
+          ни в доход, ни в расписание</span></div>
+        <div class="warn"><b>12.09</b><span>Козлов Артём: такого ученика нет
+          в списке, проверьте имя</span></div>
       </div>
     </div>
   </section>
