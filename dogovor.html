@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Договор и данные</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F1F0EE; --surface:#FFFFFF; --ink:#1C1C1C; --muted:#6F6C68; --hair:#DEDBD7;
+  --accent:#FF7028; --info:#2F5EED;
+  --shadow:0 1px 2px rgba(28,28,28,.04), 0 8px 24px rgba(28,28,28,.05);
+  --radius:20px; --font:"Outfit","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17161A; --surface:#201F24; --ink:#F1EFEB; --muted:#A5A19B; --hair:#343139;
+    --accent:#FF8244; --info:#7C9BFF;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17161A; --surface:#201F24; --ink:#F1EFEB; --muted:#A5A19B; --hair:#343139;
+  --accent:#FF8244; --info:#7C9BFF;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font);
+  font-size:16.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:800px; margin:0 auto; padding-inline:20px;}
+
+.topbar{position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
+  background:var(--bg); border-bottom:1px solid var(--hair);}
+.topbar-in{max-width:800px; margin:0 auto; padding:13px 20px;
+  display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center;}
+.topbar a{text-decoration:none; color:var(--muted); font-size:15.5px;
+  padding:7px 13px; border-radius:999px;}
+.topbar a:hover{color:var(--ink); background:var(--surface);}
+.topbar .back{margin-right:auto; color:var(--ink); font-size:18px; font-weight:500;
+  letter-spacing:-.03em; display:flex; align-items:center; gap:10px; padding-left:4px;}
+.topbar .back i{width:9px; height:9px; border-radius:2px; background:var(--accent);
+  display:block; flex:none;}
+.topbar .back:hover{background:none;}
+
+h1{font-size:clamp(28px,4.4vw,40px); line-height:1.1; font-weight:400;
+  letter-spacing:-.02em; margin:46px 0 10px;}
+h2{font-size:clamp(21px,2.6vw,26px); font-weight:500; letter-spacing:-.02em;
+  margin:0 0 14px; scroll-margin-top:80px;}
+h3{font-size:17px; font-weight:600; margin:22px 0 6px;}
+p{margin:0 0 12px;} ul{margin:0 0 12px; padding-left:22px;} li{margin-bottom:6px;}
+.lede{color:var(--muted); font-size:17.5px; max-width:60ch; margin-bottom:34px;}
+.card{background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:clamp(22px,3.5vw,36px); margin-bottom:22px;}
+.meta{font-size:14px; color:var(--muted); margin-bottom:26px;}
+.rekv{display:grid; grid-template-columns:auto 1fr; gap:8px 20px; font-size:16px;}
+.rekv dt{color:var(--muted);} .rekv dd{margin:0; font-weight:500;}
+.nav-min{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:30px;}
+.nav-min a{font-size:14.5px; text-decoration:none; color:var(--info);
+  background:var(--surface); border:1px solid var(--hair);
+  padding:8px 14px; border-radius:999px;}
+a{color:var(--info);}
+footer{padding:34px 0 60px; font-size:14px; color:var(--muted);
+  border-top:1px solid var(--hair); margin-top:30px;
+  display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:space-between;}
+@media (max-width:520px){ .rekv{grid-template-columns:1fr; gap:2px 0;} }
+</style>
+</head><body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="back" href="index.html"><i></i>Мастерская таблиц</a>
+    <nav><a href="repetitor.html">Таблица для репетитора</a></nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <h1>Договор, данные и реквизиты</h1>
+  <p class="lede">Здесь собрано всё, что нужно знать перед покупкой: кто продавец,
+    на каких условиях передаётся файл и что происходит с вашими данными.</p>
+
+  <div class="nav-min">
+    <a href="#rekvizity">Реквизиты</a>
+    <a href="#oferta">Условия покупки</a>
+    <a href="#dannye">Персональные данные</a>
+  </div>
+
+  <!-- ══════════ РЕКВИЗИТЫ ══════════ -->
+  <div class="card">
+    <h2 id="rekvizity">Реквизиты продавца</h2>
+    <dl class="rekv">
+      <dt>Продавец</dt><dd>Кокорева Наталья Александровна</dd>
+      <dt>Статус</dt><dd>Плательщик налога на профессиональный доход (самозанятая)</dd>
+      <dt>ИНН</dt><dd>673202394308</dd>
+      <dt>Связь</dt><dd>Telegram <a href="https://t.me/masterica_tablic">@masterica_tablic</a></dd>
+      <dt>Сайт</dt><dd>masterica-tablic.github.io</dd>
+    </dl>
+  </div>
+
+  <!-- ══════════ ОФЕРТА ══════════ -->
+  <div class="card">
+    <h2 id="oferta">Условия покупки (публичная оферта)</h2>
+    <p class="meta">Редакция от 17 октября 2026 года</p>
+
+    <h3>1. Что это за документ</h3>
+    <p>Это предложение заключить договор на покупку файла-шаблона на условиях,
+      описанных ниже. Предложение адресовано любому человеку. Оплата означает,
+      что вы прочитали эти условия и согласны с ними.</p>
+
+    <h3>2. Что вы покупаете</h3>
+    <p>Вы покупаете экземпляр готового файла-шаблона для Microsoft Excel
+      и WPS Office и право пользоваться им для своих нужд без ограничения срока.
+      Файл передаётся готовым, доработка под ваши задачи в стоимость не входит
+      и обсуждается отдельно.</p>
+
+    <h3>3. Цена и оплата</h3>
+    <p>Цена указана на странице товара. Продавец применяет налог
+      на профессиональный доход, НДС не облагается. После оплаты вы получаете
+      чек, сформированный в приложении "Мой налог".</p>
+
+    <h3>4. Как и когда вы получите файл</h3>
+    <p>Файл отправляется на контакт, который вы указали при покупке, в Telegram
+      или на почту, в течение 24 часов после поступления оплаты. Если за это
+      время файл не пришёл, напишите продавцу: скорее всего, контакт указан
+      с ошибкой.</p>
+
+    <h3>5. Возврат денег</h3>
+    <p>Если файл вам не подошёл, напишите в течение 14 дней после покупки,
+      и деньги вернутся полностью. Объяснять причину не нужно. Возврат идёт
+      тем же способом, которым была оплата, в срок до 10 рабочих дней.</p>
+
+    <h3>6. Как файлом можно и нельзя пользоваться</h3>
+    <p>Можно: пользоваться файлом в своей работе сколько угодно, менять его
+      под себя, делать копии для собственного пользования.</p>
+    <p>Нельзя: перепродавать файл, выкладывать его в открытый доступ, раздавать
+      третьим лицам и выдавать за свою разработку. Каждый проданный экземпляр
+      именной: в нём указано имя покупателя.</p>
+
+    <h3>7. Ответственность</h3>
+    <p>Файл передаётся в том виде, в котором он есть. Продавец отвечает
+      за то, что формулы в файле считают по описанным правилам, и бесплатно
+      исправляет ошибки, если они найдутся.</p>
+    <p>Продавец не отвечает за данные, которые вы внесли в файл, за их потерю
+      при сбое вашего компьютера и за решения, принятые на основании расчётов.
+      Делайте резервные копии, как с любым рабочим файлом.</p>
+
+    <h3>8. Если что-то пошло не так</h3>
+    <p>Сначала напишите продавцу: почти всё решается перепиской за день.
+      Если договориться не вышло, спор решается по законодательству
+      Российской Федерации.</p>
+  </div>
+
+  <!-- ══════════ ПЕРСОНАЛЬНЫЕ ДАННЫЕ ══════════ -->
+  <div class="card">
+    <h2 id="dannye">Политика обработки персональных данных</h2>
+    <p class="meta">Редакция от 17 октября 2026 года</p>
+
+    <h3>1. Кто обрабатывает данные</h3>
+    <p>Данные обрабатывает продавец, указанный в разделе "Реквизиты".</p>
+
+    <h3>2. Какие данные собираются</h3>
+    <ul>
+      <li>имя, которое вы называете при покупке;</li>
+      <li>контакт для связи: имя пользователя в Telegram или адрес почты;</li>
+      <li>дата и сумма покупки.</li>
+    </ul>
+    <p>Паспортные данные, адрес и данные банковской карты продавцу не передаются
+      и у него не хранятся.</p>
+
+    <h3>3. Зачем они нужны</h3>
+    <ul>
+      <li>чтобы отправить вам файл и вписать в него ваше имя;</li>
+      <li>чтобы сформировать чек, как того требует закон;</li>
+      <li>чтобы отвечать на ваши вопросы и присылать исправления файла.</li>
+    </ul>
+    <p>Для рассылок и рекламы данные не используются.</p>
+
+    <h3>4. На каком основании</h3>
+    <p>Обработка нужна для исполнения договора с вами и для выполнения
+      обязанностей, установленных законом. Отдельные действия, не связанные
+      с договором, выполняются только с вашего согласия.</p>
+
+    <h3>5. Кому они передаются</h3>
+    <p>Платёжному сервису, через который прошла оплата, и налоговому органу
+      в составе чека. Больше никому. Данные не продаются и не передаются
+      для рекламы.</p>
+
+    <h3>6. Сколько хранятся</h3>
+    <p>Пока это нужно для поддержки покупателей и для выполнения требований
+      закона о хранении сведений о расчётах. Дальше удаляются.</p>
+
+    <h3>7. Что вы можете потребовать</h3>
+    <p>Узнать, какие ваши данные есть у продавца, исправить их, отозвать
+      согласие и потребовать удаления. Напишите в Telegram, он указан
+      в разделе "Реквизиты": ответ придёт в срок, установленный законом.</p>
+
+    <h3>8. Как данные защищены</h3>
+    <p>Переписка и файлы хранятся на личных устройствах продавца, доступ
+      к ним есть только у него. Сайт работает по защищённому протоколу
+      и сам никаких данных не собирает: на нём нет ни форм, ни счётчиков,
+      ни рекламных кодов.</p>
+  </div>
+
+  <footer>
+    <span><a href="index.html">Мастерская таблиц</a></span>
+    <span>Вопросы в Telegram: @masterica_tablic</span>
+  </footer>
+
+</div>
+</body></html>
