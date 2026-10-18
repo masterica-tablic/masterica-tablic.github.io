@@ -98,6 +98,18 @@ p{margin:0;}
   text-transform:uppercase; color:var(--muted); margin-bottom:12px;}
 .stat.is-accent .stat-k{color:var(--accent);}
 .stat-l{margin-top:14px; font-size:14.5px; color:var(--muted); line-height:1.4;}
+.stat-t{font-size:20px; font-weight:500; letter-spacing:-.02em; line-height:1.25;}
+.hero-price{margin-top:4px; font-size:15.5px; color:var(--muted);}
+.hero-price b{color:var(--ink); font-weight:600;}
+.sheet-tag{display:inline-block; margin-top:11px; font-size:11px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; padding:4px 9px; border-radius:999px;}
+.tag-in{background:var(--accent-soft); color:var(--accent);}
+.tag-auto{background:var(--hair); color:var(--muted);}
+.notfor{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:30px;}
+.notfor div{background:var(--surface); border-radius:16px; padding:20px 22px;
+  font-size:15.5px; line-height:1.45; box-shadow:var(--shadow); color:var(--muted);}
+.notfor b{color:var(--ink); font-weight:600; display:block; margin-bottom:6px;}
+@media (max-width:760px){ .notfor{grid-template-columns:1fr;} }
 .stat.is-accent .stat-n{color:var(--accent);}
 
 /* ---------- боли ---------- */
@@ -297,7 +309,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
 .demo-frame{border-radius:var(--radius); overflow:hidden; background:var(--surface);
   box-shadow:var(--shadow); line-height:0;}
 .demo-frame video{width:100%; height:auto; display:block; background:#fff;}
-.demo-steps{display:grid; grid-template-columns:repeat(5,1fr); gap:1px;
+.demo-steps{display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
   background:var(--hair); border:1px solid var(--hair);
   border-radius:14px; overflow:hidden; margin-top:4px;}
 .demo-step{background:var(--surface); padding:15px 16px 17px;}
@@ -328,40 +340,38 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   <section class="hero">
     <div class="stack">
       <div>
-        <div class="eyebrow">Учёт учеников, занятий и оплат · Excel и WPS</div>
-        <h1>Таблица сама замечает то,<br>что вы <em>упустили</em></h1>
+        <div class="eyebrow">Для репетиторов · Excel и WPS Office</div>
+        <h1>Учёт учеников и оплат без путаницы<br>в тетрадях и <em>переписках</em></h1>
       </div>
-      <p class="lede">Занятие прошло, а статус не отмечен. Абонемент заканчивается.
-        Долг висит третью неделю. Вы вносите занятия и оплаты, остальное таблица
-        считает сама и показывает, что требует внимания сегодня.</p>
-      <p class="muted" style="max-width:58ch">Ученики, журнал занятий, оплаты,
-        расписание на неделю, отчёт родителю и сводка по доходу. Без подписки,
-        без регистрации учеников, без макросов.</p>
+      <p class="lede">Готовая таблица, в которой собраны занятия, расписание,
+        оплаты и долги. Вы отмечаете проведённые уроки и внесённые деньги,
+        а таблица сама пересчитывает остатки и подсказывает, что нужно проверить.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="demo.html">Потрогать таблицу</a>
-        <a class="btn btn-ghost" href="https://t.me/masterica_tablic">Написать и забрать</a>
-        <span class="handle">Отвечаю в Telegram: <b>@masterica_tablic</b></span>
+        <a class="btn btn-primary" href="demo.html">Посмотреть, как работает</a>
+        <a class="btn btn-ghost" href="https://t.me/masterica_tablic">Хочу такую таблицу</a>
       </div>
+      <p class="hero-price"><b>990 ₽</b> · один раз, без подписки ·
+        посмотреть можно бесплатно и без регистрации</p>
     </div>
 
     <div class="stats">
       <div class="stat">
-        <div class="stat-k">Внутри</div>
-        <div class="stat-n">8 <span>листов</span></div>
-        <div class="stat-l">ученики, занятия, оплаты, расписание, отчёт родителю,
-          сводка, напоминания и инструкция</div>
+        <div class="stat-k">Один файл</div>
+        <div class="stat-t">Всё в одном месте</div>
+        <div class="stat-l">Ученики, занятия, оплаты и расписание больше
+          не разбросаны по тетрадям, заметкам и перепискам.</div>
       </div>
       <div class="stat">
-        <div class="stat-k">Регистраций</div>
-        <div class="stat-n">0</div>
-        <div class="stat-l">ученикам и родителям не надо заводить кабинеты
-          и что-то устанавливать</div>
+        <div class="stat-k">Без калькулятора</div>
+        <div class="stat-t">Меньше ручных расчётов</div>
+        <div class="stat-l">Баланс учеников, остатки абонементов и сводка
+          по доходу пересчитываются сами.</div>
       </div>
       <div class="stat is-accent">
-        <div class="stat-k">Цена</div>
-        <div class="stat-n">990 <span>₽</span></div>
-        <div class="stat-l">один раз и навсегда, не в месяц
-          и не за ученика</div>
+        <div class="stat-k">Без подписки</div>
+        <div class="stat-t">Никаких ежемесячных платежей</div>
+        <div class="stat-l">Один раз покупаете файл и работаете в Excel
+          или WPS Office. Данные хранятся у вас.</div>
       </div>
     </div>
   </section>
@@ -372,10 +382,11 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
     <div class="demo">
       <div>
         <div class="eyebrow">Как это выглядит в работе</div>
-        <h2>Сорок секунд без слов и музыки</h2>
+        <h2>Вот как это работает</h2>
       </div>
-      <p class="lede">Запись сделана в обычном WPS Office на обычном ноутбуке.
-        Ничего не ускорено и не смонтировано красиво: так это и работает.</p>
+      <p class="lede">Добавляете занятие и отмечаете оплату. Таблица обновляет
+        баланс ученика, расписание и сводку по доходам. Если в журнале что-то
+        забыли заполнить, это видно по колонке "Проверка".</p>
 
       <div class="demo-frame">
         <video src="demo.mp4" poster="demo-poster.jpg" controls autoplay muted loop
@@ -387,39 +398,36 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
         </video>
       </div>
 
-      <div class="demo-steps">
-        <div class="demo-step"><b>1</b><span>Вношу занятие в журнал
-          и ставлю статус "Проведено"</span></div>
-        <div class="demo-step"><b>2</b><span>На листе "Ученики" баланс
-          пересчитался сам</span></div>
-        <div class="demo-step"><b>3</b><span>В расписании занятие
-          встало в свой день и час</span></div>
-        <div class="demo-step"><b>4</b><span>В напоминаниях готовый текст,
-          остаётся скопировать</span></div>
-        <div class="demo-step"><b>5</b><span>В сводке доход, долги
-          и график по месяцам</span></div>
+      <div class="demo-steps demo-steps-4">
+        <div class="demo-step"><b>1</b><span>Добавляете занятие
+          в журнал</span></div>
+        <div class="demo-step"><b>2</b><span>Баланс ученика
+          пересчитывается сам</span></div>
+        <div class="demo-step"><b>3</b><span>Расписание
+          обновляется</span></div>
+        <div class="demo-step"><b>4</b><span>В сводке видны доходы
+          и долги</span></div>
       </div>
 
       <p class="muted" style="font-size:14.5px">Видео снято с экрана ноутбука,
-        на телефоне мелкий текст читается плохо. Чтобы рассмотреть, как таблица
-        работает, откройте <a href="demo.html">интерактивную демонстрацию</a>:
-        там те же листы, и можно менять данные самому.</p>
+        на телефоне мелкий текст читается плохо. Лучше
+        <a href="demo.html">откройте таблицу сами</a>: можно менять данные
+        и проверять расчёты, регистрация не нужна.</p>
     </div>
   </section>
 
   <!-- ══════════════ БОЛИ ══════════════ -->
   <section>
-    <h2>Знакомо?</h2>
+    <h2>Когда учеников становится больше, помнить всё сложнее</h2>
     <div class="pains">
-      <div class="pain">Чтобы вспомнить, что у вас на этой неделе, приходится
-        листать переписку с четырьмя родителями.</div>
-      <div class="pain">Занятие перенесли, потом ещё раз, и в итоге непонятно,
-        оно было или нет.</div>
-      <div class="pain">Родитель спрашивает "сколько с меня", и вы пересчитываете
-        по переписке и календарю.</div>
-      <div class="pain">Абонемент вроде закончился, но вы не уверены,
-        и лишний раз спросить неловко.</div>
+      <div class="pain">Не помните, оплатил ли ученик прошлое занятие.</div>
+      <div class="pain">Пересчитываете абонемент перед каждым уроком.</div>
+      <div class="pain">Ищете в переписке, когда договорились о переносе.</div>
+      <div class="pain">В конце месяца заново считаете доходы и долги.</div>
     </div>
+    <p class="lede" style="margin-top:24px">По отдельности мелочи. Вместе лишняя
+      работа и риск что-то упустить. Таблица нужна, чтобы собрать этот учёт
+      в одном месте и не восстанавливать всё по памяти.</p>
   </section>
 
   <!-- ══════════════ ПРОВЕРКА ══════════════ -->
@@ -428,14 +436,14 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
       <div class="stack">
         <div>
           <div class="eyebrow">Колонка "Проверка"</div>
-          <h2>Главное: она видит то, что пропустили вы</h2>
+          <h2>Чтобы не забыть занятие и не потерять оплату</h2>
         </div>
-        <p class="lede">Занятие прошло, а статус в журнале остался
-          "Запланировано". В доход оно не попало, в долг ученику тоже.
-          Опечатка в имени, пустая дата, занятие будущим числом с пометкой
-          "проведено". Такие строки таблица показывает сама, прямо в журнале.</p>
-        <p class="muted">Это не отчёт, который надо открывать и сверять.
-          Предупреждение появляется в той же строке, где вы работаете.</p>
+        <p class="lede">Забыли отметить проведённый урок? Оставили пустую дату?
+          Указали имя, которого нет в списке учеников? Таблица показывает такие
+          ошибки прямо в журнале.</p>
+        <p class="muted">Не нужно отдельно сверять каждую запись с расписанием
+          и оплатами. Например, если занятие прошло, но осталось со статусом
+          "Запланировано", таблица подскажет, что строку нужно проверить.</p>
       </div>
 
       <div class="sheet" role="img"
@@ -455,7 +463,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   <section>
     <div class="split">
       <div class="stack-s">
-        <h3>Баланс по каждому ученику всегда актуальный</h3>
+        <h3>Сразу видно, кто оплатил, а кто должен</h3>
         <div class="sheet" role="img"
              aria-label="Фрагмент листа "Ученики" с балансами и остатком абонемента">
           <div class="sheet-bar">Ученики</div>
@@ -481,12 +489,13 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
             </table>
           </div>
         </div>
-        <p class="muted" style="font-size:15px">Персиковым отмечен тот, кто должен,
-          лаймовым тот, у кого аванс. Пересчитывается при каждом изменении.</p>
+        <p class="muted" style="font-size:15px">Баланс по каждому ученику
+          обновляется сам: видно, где остался аванс, кому нужно доплатить
+          и сколько занятий осталось по абонементу.</p>
       </div>
 
       <div class="stack-s">
-        <h3>И готовый текст, который остаётся только отправить</h3>
+        <h3>Не нужно каждый раз придумывать сообщение родителю</h3>
         <div class="sheet" role="img"
              aria-label="Фрагмент листа "Напоминания" с готовыми сообщениями">
           <div class="sheet-bar">Напоминания · на сегодня</div>
@@ -510,68 +519,78 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
               у нас занятие. Всё в силе?</div>
           </div>
         </div>
-        <p class="muted" style="font-size:15px">Список собирается сам при открытии
-          файла. Скопировали и отправили.</p>
+        <p class="muted" style="font-size:15px">Таблица собирает список
+          предстоящих занятий, долгов и заканчивающихся абонементов. Тексты
+          готовые: проверить сумму, скопировать, отправить.</p>
       </div>
     </div>
   </section>
 
   <!-- ══════════════ ЛИСТЫ ══════════════ -->
   <section>
-    <h2>Восемь листов, которые работают вместе</h2>
-    <p class="lede" style="margin-top:14px">Заполняете три из них. Остальные
-      собираются из ваших данных сами.</p>
+    <h2>Всё для учёта репетитора в одном файле</h2>
+    <p class="lede" style="margin-top:14px">Заполняете данные об учениках,
+      занятиях и оплатах. Остальные листы берут эти данные и строят из них
+      расписание, отчёты и напоминания.</p>
 
     <div class="sheets">
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/></svg></div>
         <h3>Ученики</h3>
-        <p>Карточка, ставка, модель оплаты и текущий баланс по каждому.</p>
+        <p>Ставки, способ оплаты, баланс и остаток занятий по каждому ученику.</p>
+        <span class="sheet-tag tag-in">заполняете сами</span>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div>
         <h3>Занятия</h3>
-        <p>Журнал на 300 строк: дата, время, статус. И колонка "Проверка".</p>
+        <p>Журнал уроков с датами, временем, статусами и проверкой ошибок.</p>
+        <span class="sheet-tag tag-in">заполняете сами</span>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/><path d="M3 11h18M7 15h4"/></svg></div>
         <h3>Оплаты</h3>
-        <p>Кто, когда и сколько заплатил. Поштучно и абонементами.</p>
+        <p>История платежей: кто, когда и сколько заплатил.</p>
+        <span class="sheet-tag tag-in">заполняете сами</span>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 5h18v16H3z"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
         <h3>Расписание</h3>
-        <p>Сетка на неделю. Несколько учеников в один час, это нормально.</p>
+        <p>План занятий на неделю, собранный из журнала.</p>
+        <span class="sheet-tag tag-auto">считается само</span>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg></div>
         <h3>Отчёт родителю</h3>
-        <p>Выбрали ученика и период, получили готовый текст для отправки.</p>
+        <p>Выбираете ученика и период, получаете готовый текст с информацией
+          о занятиях.</p>
+        <span class="sheet-tag tag-auto">считается само</span>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 20V9M11 20V4M16 20v-7M21 20v-4"/></svg></div>
         <h3>Сводка</h3>
-        <p>Доход, часы, средний чек, доход в час и график по месяцам.</p>
+        <p>Доход, количество часов, средний чек и доход в час.</p>
+        <span class="sheet-tag tag-auto">считается само</span>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
         <h3>Напоминания</h3>
-        <p>Долги, кончающиеся абонементы, занятия на сегодня и завтра.</p>
+        <p>Долги, заканчивающиеся абонементы и занятия на сегодня и завтра.</p>
+        <span class="sheet-tag tag-auto">считается само</span>
       </div>
       <div class="sheet-card">
         <div class="sheet-i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg></div>
         <h3>Инструкция</h3>
-        <p>Внутри файла, на русском. Разобраться можно за пять минут.</p>
+        <p>Пошаговое объяснение на русском языке, внутри файла.</p>
       </div>
     </div>
   </section>
 
   <!-- ══════════════ СРАВНЕНИЕ ══════════════ -->
   <section>
-    <h2>Чем это отличается от платформ по подписке</h2>
-    <p class="lede" style="margin-top:14px">Платформа нужна тем, кто переносит
-      на неё всё преподавание. Если вам нужен только учёт, вы переплачиваете
-      за то, чем не пользуетесь.</p>
+    <h2>Если нужен только учёт, не обязательно платить за целую платформу</h2>
+    <p class="lede" style="margin-top:14px">Вам не нужно переносить всё
+      преподавание в новый сервис и просить родителей где-то регистрироваться.
+      Это обычный файл, в котором вы ведёте свой учёт.</p>
 
     <div class="sheet-scroll">
       <table class="cmp">
@@ -583,7 +602,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
           </tr>
         </thead>
         <tbody>
-          <tr><td>Сколько платить</td><td>около 1 000 ₽ каждый месяц</td>
+          <tr><td>Сколько платить</td><td>подписка каждый месяц</td>
             <td class="col-us">990 ₽ один раз</td></tr>
           <tr><td>Кого регистрировать</td><td>ученика и родителя</td>
             <td class="col-us">никого</td></tr>
@@ -592,7 +611,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
           <tr><td>Очные занятия</td><td>сервис заточен под онлайн</td>
             <td class="col-us">без разницы</td></tr>
           <tr><td>Без интернета</td><td>не работает</td>
-            <td class="col-us">работает</td></tr>
+            <td class="col-us">работает, файл уже у вас</td></tr>
           <tr><td>Если сервис закроется</td><td>данные остаются там</td>
             <td class="col-us">файл лежит у вас на диске</td></tr>
         </tbody>
@@ -602,49 +621,68 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
 
   <!-- ══════════════ ЦЕНА ══════════════ -->
   <section>
-    <h2>Сколько стоит</h2>
+    <h2>Один раз настроить учёт и больше не пересчитывать всё вручную</h2>
     <div class="price-card">
       <div>
         <div class="price-n">990 <span>₽</span></div>
         <ul class="price-list">
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-            Файл .xlsx остаётся вашим навсегда, без срока и без подписки</li>
+            Учёт занятий, оплат и абонементов</li>
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-            Работает в Microsoft Excel и в WPS Office, проверено в обоих</li>
+            Автоматический баланс и сводка по доходам</li>
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-            Макросов нет: при открытии ничего включать не нужно</li>
+            Расписание, напоминания и отчёты родителям</li>
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-            Инструкция внутри файла, на русском</li>
+            Инструкция на русском языке внутри файла</li>
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-            Помогу с настройкой, если что-то не пойдёт</li>
+            Помощь с настройкой, если возникнут вопросы</li>
         </ul>
       </div>
       <div class="price-side">
-        <a class="btn btn-primary" href="https://t.me/masterica_tablic">Написать в Telegram</a>
-        <a class="btn btn-ghost" href="demo.html">Сначала потрогать</a>
-        <span class="handle">@masterica_tablic</span>
+        <a class="btn btn-primary" href="https://t.me/masterica_tablic">Хочу такую таблицу</a>
+        <span class="handle">Файл .xlsx. Без подписки, макросов
+          и регистрации учеников.</span>
       </div>
     </div>
+    <p class="muted" style="margin-top:22px; font-size:15.5px">Не уверены,
+      подойдёт ли? Сначала откройте <a href="demo.html">демонстрацию</a>:
+      она бесплатная, регистрация не нужна.</p>
 
+    <h2 style="margin-top:64px">Как получить таблицу</h2>
     <div class="steps">
       <div class="step">
         <div class="step-n">ШАГ 1</div>
-        <h3>Смотрите сами</h3>
-        <p>Открываете <a href="demo.html">демонстрацию</a> и листаете те же
-          листы прямо в браузере. Ничего скачивать не надо.</p>
+        <h3>Посмотрите демонстрацию</h3>
+        <p>Откройте <a href="demo.html">таблицу в браузере</a>, попробуйте
+          изменить данные и проверьте, как всё считается.</p>
       </div>
       <div class="step">
         <div class="step-n">ШАГ 2</div>
-        <h3>Пишете мне</h3>
-        <p>Расскажете, как ведёте учёт сейчас и поштучно вам платят
-          или абонементами.</p>
+        <h3>Напишите мне в Telegram</h3>
+        <p>Отвечу на вопросы и помогу разобраться, подойдёт ли таблица
+          под ваш способ учёта.</p>
       </div>
       <div class="step">
         <div class="step-n">ШАГ 3</div>
-        <h3>Работаете</h3>
-        <p>После оплаты пришлю чистую таблицу под ваших учеников
-          и ответы на вопросы.</p>
+        <h3>Получите файл</h3>
+        <p>После оплаты пришлю чистую таблицу, которую вы заполните данными
+          своих учеников.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ КОМУ НЕ ПОДОЙДЁТ ══════════════ -->
+  <section>
+    <h2>Когда таблица не подойдёт</h2>
+    <p class="lede" style="margin-top:14px">Честнее сказать сразу, чем вернуть
+      деньги через неделю.</p>
+    <div class="notfor">
+      <div><b>Вести учёт только с телефона</b>Открыть и посмотреть можно,
+        но заполнять таблицу на маленьком экране неудобно.</div>
+      <div><b>Нужна платформа для онлайн-школы</b>Здесь нет кабинетов учеников,
+        уроков внутри сервиса и приёма оплат.</div>
+      <div><b>Нужен доступ для нескольких преподавателей</b>Это файл на вашем
+        компьютере, а не общая база с правами доступа.</div>
     </div>
   </section>
 
@@ -653,41 +691,38 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
     <h2>Частые вопросы</h2>
     <div class="faq">
       <details open>
-        <summary>У меня WPS, а не Excel. Заработает?</summary>
-        <div class="ans">Да, и это проверено специально. В таблице нет ни одной
-          формулы массива, именно на них обычно ломаются шаблоны из интернета,
-          причём молча: файл открывается, а половина ячеек пустая.
-          Здесь такого не будет.</div>
+        <summary>Работает ли таблица в WPS Office?</summary>
+        <div class="ans">Да, проверено и в WPS Office, и в Microsoft Excel.
+          В таблице нет формул массива, а именно на них обычно молча ломаются
+          шаблоны из интернета.</div>
       </details>
       <details>
-        <summary>Надо включать макросы?</summary>
-        <div class="ans">Нет. Макросов в файле нет совсем, всё считают формулы.
-          При открытии ничего разрешать и подтверждать не нужно
-          ни в Excel, ни в WPS.</div>
+        <summary>Нужно ли включать макросы?</summary>
+        <div class="ans">Нет. Все расчёты делают формулы, при открытии ничего
+          разрешать не нужно.</div>
       </details>
       <details>
-        <summary>Ученикам и родителям надо где-то регистрироваться?</summary>
-        <div class="ans">Нет. Таблица это только ваш инструмент. Родитель видит
-          максимум готовый отчёт, который вы сами ему отправите.</div>
+        <summary>Нужно ли регистрировать учеников и родителей?</summary>
+        <div class="ans">Нет. Это ваш личный файл, и вы сами решаете, какую
+          информацию и кому отправлять.</div>
       </details>
       <details>
-        <summary>А с телефона работает?</summary>
-        <div class="ans">Посмотреть можно, заполнять неудобно, как и любую
-          таблицу на маленьком экране. Нормальный сценарий: отмечать занятия
-          вечером с компьютера или планшета. Если вам нужно именно отмечать
-          на ходу с телефона, честно скажу, это не ваш вариант.</div>
+        <summary>Можно ли работать с телефона?</summary>
+        <div class="ans">Открыть файл можно, но для регулярного заполнения
+          удобнее компьютер или планшет.</div>
       </details>
       <details>
-        <summary>Сколько учеников и занятий помещается?</summary>
-        <div class="ans">50 учеников, 300 занятий и 150 оплат, это примерно
-          полтора года работы. Журнал фильтруется по месяцам, так что длинная
-          история не мешает.</div>
+        <summary>Сколько учеников помещается в таблице?</summary>
+        <div class="ans">До 50 учеников, 300 занятий и 150 оплат, это примерно
+          полтора года работы. Для большего объёма шаблон нужно расширить,
+          напишите, помогу.</div>
       </details>
       <details>
-        <summary>А если не подойдёт?</summary>
-        <div class="ans">Верну деньги, объяснять причину не нужно.
-          Поэтому и предлагаю сначала открыть <a href="demo.html">демонстрацию</a>:
-          там та же таблица с теми же листами, и сразу понятно, ваше это или нет.</div>
+        <summary>Что, если таблица мне не подойдёт?</summary>
+        <div class="ans">Перед покупкой её можно бесплатно проверить
+          в <a href="demo.html">демонстрации</a>. Если после покупки таблица
+          не подойдёт, верну деньги в течение 14 дней, объяснять причину
+          не нужно.</div>
       </details>
     </div>
   </section>
@@ -695,11 +730,11 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   <!-- ══════════════ ФИНАЛ ══════════════ -->
   <section>
     <div class="final">
-      <h2>Посмотрите, прежде чем решать</h2>
-      <p class="lede">Демонстрация открыта и работает без регистрации:
-        те же листы, можно менять данные и смотреть, как таблица пересчитывает.
-        Понравится, напишите, и поговорим об оплате.</p>
-      <a class="btn btn-primary" href="demo.html">Потрогать таблицу</a>
+      <h2>Попробуйте таблицу на своих примерах</h2>
+      <p class="lede">Не нужно покупать вслепую. Откройте демонстрацию,
+        поменяйте данные и посмотрите, подходит ли вам такой способ учёта.
+        Если всё удобно, напишите мне в Telegram, расскажу, как получить файл.</p>
+      <a class="btn btn-primary" href="demo.html">Открыть демонстрацию</a>
       <a class="btn btn-ghost" href="https://t.me/masterica_tablic">Написать в Telegram</a>
       <span class="handle">@masterica_tablic</span>
     </div>
