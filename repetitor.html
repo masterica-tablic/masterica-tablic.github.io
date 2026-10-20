@@ -224,6 +224,11 @@ td.num{text-align:right;}
   stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round;}
 .price-side{text-align:center; display:flex; flex-direction:column;
   gap:14px; align-items:center;}
+.pay-lbl{font-size:11px; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--muted);}
+.robo{width:280px; max-width:100%; min-height:70px;}
+.robo iframe{border:0; width:100%; max-width:280px;}
+.pay-note{font-size:14.5px; color:var(--muted); line-height:1.45; max-width:30ch;}
 
 /* ---------- шаги ---------- */
 .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:34px;}
@@ -348,7 +353,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
         а таблица сама пересчитывает остатки и подсказывает, что нужно проверить.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="demo.html">Посмотреть, как работает</a>
-        <a class="btn btn-ghost" href="https://t.me/masterica_tablic">Хочу такую таблицу</a>
+        <a class="btn btn-ghost" href="#kupit">Хочу такую таблицу</a>
       </div>
       <p class="hero-price"><b>990 ₽</b> · один раз, без подписки ·
         посмотреть можно бесплатно и без регистрации</p>
@@ -620,7 +625,7 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
   </section>
 
   <!-- ══════════════ ЦЕНА ══════════════ -->
-  <section>
+  <section id="kupit">
     <h2>Один раз настроить учёт и больше не пересчитывать всё вручную</h2>
     <div class="price-card">
       <div>
@@ -639,9 +644,15 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
         </ul>
       </div>
       <div class="price-side">
-        <a class="btn btn-primary" href="https://t.me/masterica_tablic">Хочу такую таблицу</a>
-        <span class="handle">Файл .xlsx. Без подписки, макросов
-          и регистрации учеников.</span>
+        <div class="pay-lbl">Оплата картой или по СБП</div>
+        <div class="robo">
+          <script type="text/javascript"
+            src="https://auth.robokassa.ru/Merchant/PaymentForm/FormSS.js?EncodedInvoiceId=uh5TRZ6WwkKw6-CGx9MFOg"></script>
+        </div>
+        <p class="pay-note">После оплаты напишите мне в Telegram,
+          и я пришлю файл. Обычно в течение часа.</p>
+        <span class="handle"><a href="https://t.me/masterica_tablic"
+          style="color:var(--info)">Есть вопросы? Напишите до оплаты</a></span>
       </div>
     </div>
     <p class="muted" style="margin-top:22px; font-size:15.5px">Не уверены,
@@ -735,8 +746,8 @@ footer{padding-block:40px 56px; font-size:14px; color:var(--muted);
         поменяйте данные и посмотрите, подходит ли вам такой способ учёта.
         Если всё удобно, напишите мне в Telegram, расскажу, как получить файл.</p>
       <a class="btn btn-primary" href="demo.html">Открыть демонстрацию</a>
-      <a class="btn btn-ghost" href="https://t.me/masterica_tablic">Написать в Telegram</a>
-      <span class="handle">@masterica_tablic</span>
+      <a class="btn btn-ghost" href="#kupit">Купить за 990 ₽</a>
+      <span class="handle">Вопросы в Telegram: @masterica_tablic</span>
     </div>
   </section>
 
