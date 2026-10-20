@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Оплата прошла</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F1F0EE; --surface:#FFFFFF; --ink:#1C1C1C; --muted:#6F6C68; --hair:#DEDBD7;
+  --accent:#FF7028; --accent-soft:#FFEDE3; --info:#2F5EED;
+  --shadow:0 1px 2px rgba(28,28,28,.04), 0 8px 24px rgba(28,28,28,.05);
+  --radius:20px; --font:"Outfit","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17161A; --surface:#201F24; --ink:#F1EFEB; --muted:#A5A19B; --hair:#343139;
+    --accent:#FF8244; --accent-soft:#3A2419; --info:#7C9BFF;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17161A; --surface:#201F24; --ink:#F1EFEB; --muted:#A5A19B; --hair:#343139;
+  --accent:#FF8244; --accent-soft:#3A2419; --info:#7C9BFF;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font);
+  font-size:16.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+a{color:var(--info);}
+.wrap{max-width:720px; margin:0 auto; padding-inline:20px;}
+
+.topbar{position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
+  background:var(--bg); border-bottom:1px solid var(--hair);}
+.topbar-in{max-width:720px; margin:0 auto; padding:13px 20px;
+  display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center;}
+.topbar .back{margin-right:auto; color:var(--ink); font-size:18px; font-weight:500;
+  letter-spacing:-.03em; display:flex; align-items:center; gap:10px; padding-left:4px;}
+.topbar .back i{width:9px; height:9px; border-radius:2px; background:var(--accent);
+  display:block; flex:none;}
+
+.ok{width:58px; height:58px; border-radius:50%; background:var(--accent-soft);
+  display:flex; align-items:center; justify-content:center; margin:56px 0 24px;}
+.ok svg{width:30px; height:30px; stroke:var(--accent); fill:none;
+  stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;}
+
+h1{font-size:clamp(28px,4.4vw,40px); line-height:1.12; font-weight:400;
+  letter-spacing:-.02em; margin:0 0 14px;}
+.lede{color:var(--muted); font-size:17.5px; max-width:56ch; margin:0 0 34px;}
+
+.card{background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:clamp(22px,3.5vw,34px); margin-bottom:22px;}
+.card h2{font-size:19px; font-weight:600; margin:0 0 16px; letter-spacing:-.01em;}
+ol{margin:0; padding-left:0; list-style:none; counter-reset:s;}
+ol li{counter-increment:s; position:relative; padding-left:40px; margin-bottom:16px;}
+ol li:last-child{margin-bottom:0;}
+ol li::before{content:counter(s); position:absolute; left:0; top:1px;
+  width:26px; height:26px; border-radius:50%; background:var(--accent-soft);
+  color:var(--accent); font-size:13px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;}
+.btn{display:inline-flex; align-items:center; justify-content:center;
+  padding:15px 28px; border-radius:999px; font-size:16.5px; font-weight:500;
+  text-decoration:none; background:var(--accent); color:#fff;}
+.btn:hover{filter:brightness(1.06);}
+.cta{display:flex; flex-wrap:wrap; align-items:center; gap:14px 18px; margin-top:8px;}
+.handle{font-size:15px; color:var(--muted);}
+.note{font-size:15px; color:var(--muted);}
+
+footer{padding:34px 0 60px; font-size:14px; color:var(--muted);
+  border-top:1px solid var(--hair); margin-top:34px;
+  display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:space-between;}
+</style>
+</head><body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <span class="back"><i></i>Мастерская таблиц</span>
+    <nav><a href="repetitor.html">Таблица для репетитора</a></nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="ok" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+  </div>
+
+  <h1>Оплата прошла. Спасибо!</h1>
+  <p class="lede">Платёж получен. Дальше нужно одно действие от вас,
+    буквально на полминуты.</p>
+
+  <div class="card">
+    <h2>Что происходит дальше</h2>
+    <ol>
+      <li><b>Напишите мне в Telegram</b> и скажите, что оплатили.
+        Так я пойму, кому отправлять файл.</li>
+      <li><b>Пришлю таблицу</b> в ответ, обычно в течение часа,
+        максимум за сутки.</li>
+      <li><b>Чек</b> придёт отдельно, его формирует сервис оплаты
+        и отправляет в налоговую автоматически.</li>
+    </ol>
+  </div>
+
+  <div class="cta">
+    <a class="btn" href="https://t.me/masterica_tablic">Написать и забрать таблицу</a>
+    <span class="handle">@masterica_tablic</span>
+  </div>
+
+  <p class="note" style="margin-top:28px">Не пользуетесь Telegram? Напишите
+    на почту <a href="mailto:9117qqqqqq@gmail.com">9117qqqqqq@gmail.com</a>,
+    укажите дату и сумму платежа.</p>
+
+  <footer>
+    <span>Мастерская таблиц</span>
+    <span><a href="dogovor.html">Договор и реквизиты</a></span>
+    <div style="flex:0 0 100%; order:9; margin-top:16px; padding-top:14px;
+      border-top:1px solid var(--hair); line-height:1.75">
+      Кокорева Наталья Александровна · ИНН 673202394308 ·
+      плательщик налога на профессиональный доход (самозанятая) · г. Смоленск<br>
+      Почта <a href="mailto:9117qqqqqq@gmail.com">9117qqqqqq@gmail.com</a>
+      · Telegram <a href="https://t.me/masterica_tablic">@masterica_tablic</a>
+    </div>
+  </footer>
+
+</div>
+</body></html>
